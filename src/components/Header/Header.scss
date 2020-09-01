@@ -1,0 +1,24 @@
+@import "../../scss/main.scss";
+
+.header {
+  position: fixed;
+  z-index: 999;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 50px;
+  width: 100%;
+  background-color: $backgroundColor;
+  box-shadow: $shadow;
+
+  .container {
+    height: 100%;
+  }
+
+  &__wrap {
+    height: 100%;
+    @include flexbox();
+    align-items: center;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "extends": [
+    "react-app",
+    "prettier"
+  ],
+  "plugins": [
+    "prettier", 
+    "import-helpers"
+  ],
+  "rules": {
+    "jsx-quotes": [
+      1,
+      "prefer-double"
+    ], 
+    "import-helpers/order-imports": [
+      "warn",
+      { 
+        "newlinesBetween": "always",
+        "groups": [
+            ["/^react/", "/^redux/"],
+            "module",
+            ["parent", "sibling", "index"],
+            "/module.scss/"
+        ],
+        "alphabetize": { "order": "asc", "ignoreCase": false }
+      }
+  ]
+  }
+}
