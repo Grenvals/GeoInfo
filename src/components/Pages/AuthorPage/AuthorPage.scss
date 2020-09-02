@@ -1,3 +1,36 @@
 @import "../../../scss/main.scss";
 
-.authorPage {}
+.author {
+  @include flexbox();
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  box-shadow: $shadow;
+  border-radius: 10px;
+
+  &__content {
+    font-size: 14px;
+  }
+}
+
+.info {
+  max-width: 350px;
+
+  &__version {
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+
+  &__name {
+    margin-bottom: 4px;
+
+    a {
+      margin-left: 3px;
+    }
+  }
+
+  &__link {
+    text-decoration: underline;
+    color: $accentColor;
+  }
+}

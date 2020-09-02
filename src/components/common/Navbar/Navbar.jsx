@@ -17,7 +17,7 @@ const Navbar = () => {
           title={'Authorization'}
         />
         <NavbarLink link={'/main/'} linkIcon={mapIcon} title={'Main page'} />
-        <NavbarLink link={'/author/'} linkIcon={authorIcon} title={'About author'} />
+        <NavbarLink link={'/author/'} linkIcon={authorIcon} title={'About'} />
       </ul>
     </nav>
   );
