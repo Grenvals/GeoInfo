@@ -10,7 +10,6 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ImageMinPlugin from 'imagemin-webpack-plugin';
 import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
 
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {

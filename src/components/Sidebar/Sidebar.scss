@@ -1,0 +1,23 @@
+@import "./../../scss/main.scss";
+
+.sidebar {
+  flex: 0 0 300px;
+  width: 270px;
+  margin: 15px 15px 15px 0px;
+
+  &>* {
+    margin-bottom: 15px;
+  }
+
+  @media (max-width:$md2+px) {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    margin: 0px;
+
+    &>* {
+      margin-bottom: 0px;
+    }
+  }
+}

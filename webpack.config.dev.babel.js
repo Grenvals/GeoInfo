@@ -111,5 +111,6 @@ module.exports = {
     inline: true,
     contentBase: './dist',
     port: 5000,
+    historyApiFallback: true,
   },
 };

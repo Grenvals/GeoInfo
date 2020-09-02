@@ -1,0 +1,71 @@
+@import "./../../../../scss/main.scss";
+
+.navbarLink {
+  list-style: none;
+  font-size: 14px;
+  overflow: hidden;
+
+  @media (max-width: $md2+px) {
+    flex: 1;
+  }
+
+  &__img {
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 15px;
+
+    @media (max-width: $md3+px) {
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+    }
+  }
+
+  &__title {
+    @media (max-width: $md3+px) {
+      display: none;
+    }
+  }
+
+  &__link {
+    position: relative;
+    display: block;
+    background: $backgroundColor;
+    height: 49px;
+    line-height: 49px;
+    text-decoration: none;
+    color: $textColor;
+    padding: 0px 25px;
+    padding-left: 50px;
+    transition: background 0.2s;
+
+    @media (max-width: $md2+px) {
+      height: 45px;
+      line-height: 45px;
+    }
+
+    @media (max-width: $md3+px) {
+      border-bottom: 0px;
+      padding: 0px;
+    }
+
+    &:hover {
+      background: darken($backgroundColor, 8%);
+    }
+
+    &:active {
+      background: darken($backgroundColor, 12%);
+    }
+
+    &_active {
+      color: $backgroundColor;
+      background: $additionalColor;
+
+      &:hover {
+        background: $additionalColor;
+      }
+    }
+  }
+}
