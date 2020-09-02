@@ -1,0 +1,33 @@
+@import "../../../scss/main.scss";
+
+.OptionListBar {
+  box-shadow: $shadow;
+  border-radius: 10px;
+  overflow: hidden;
+  list-style: none;
+  min-height: 300px;
+
+  &__title {
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 35px;
+    height: 35px;
+    color: $backgroundColor;
+    background: $additionalColor;
+    box-shadow: $shadow;
+  }
+
+  &__list {
+    padding: 15px;
+
+    &>* {
+      margin-bottom: 5px;
+
+      &:last-child {
+        margin-bottom: 0px;
+      }
+    }
+  }
+}
