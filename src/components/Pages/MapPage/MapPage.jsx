@@ -1,43 +1,39 @@
-import React, { useRef, useEffect } from 'react';
-import L from 'leaflet';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import React, { useState, useEffect } from 'react';
 
 import './MapPage.scss';
+import { useCurrentLocation } from '../../../hooks/useCurrentLocation';
+import { LeafletMap } from '../../common/LeafletMap/LeafletMap';
 
-L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.7.1/dist/images/';
+const geolocationOptions = {
+  enableHighAccuracy: true,
+  timeout: 1000 * 60 * 1,
+  maximumAge: 1000 * 3600 * 24,
+};
 
 const MapPage = () => {
-  const mapRef = useRef();
+  const { location: currentLocation } = useCurrentLocation(geolocationOptions);
+  currentLocation && console.log(currentLocation);
+
+  const [initialSettings, setStartPosition] = useState();
   useEffect(() => {
-    setInterval(() => {
-      if (mapRef.current) {
-        mapRef.current.leafletElement.invalidateSize();
-      }
-    }, 1000);
-  }, [mapRef]);
-
-  const state = {
-    lat: 50.440864,
-    lng: 30.515664,
-    zoom: 10,
-  };
-
-  const center = [state.lat, state.lng];
+    if (currentLocation) {
+      setStartPosition({
+        lat: currentLocation.latitude,
+        lng: currentLocation.longitude,
+        zoom: 10,
+      });
+    } else {
+      setStartPosition({
+        lat: 50.440864,
+        lng: 30.515664,
+        zoom: 10,
+      });
+    }
+  }, [currentLocation]);
 
   return (
-    <div className="map">
-      <Map zoom={state.zoom} center={center} ref={mapRef}>
-        <TileLayer
-          attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Marker position={center}>
-          <Popup>
-            <p>MainText</p>
-            <p>MainText</p>
-          </Popup>
-        </Marker>
-      </Map>
+    <div className="mapPage">
+      {initialSettings && <LeafletMap initialSettings={initialSettings} />}
     </div>
   );
 };

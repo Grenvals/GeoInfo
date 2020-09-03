@@ -1,31 +1,7 @@
 @import "../../../scss/main.scss";
 @import url("https://unpkg.com/leaflet@1.7.1/dist/leaflet.css");
 
-.map {
-  width: 100%;
+.mapPage {
   height: 100%;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: $shadow;
-
-  .leaflet-container {
-    height: 100%;
-    width: 100%;
-  }
-
-  .leaflet-control-zoom {
-    margin: 15px;
-    border-radius: 16px;
-    overflow: hidden;
-    border: none;
-    box-shadow: none;
-
-    a {
-      border: none;
-      height: 40px;
-      width: 33px;
-      line-height: 40px;
-      color: $textColor;
-    }
-  }
+  width: 100%;
 }
