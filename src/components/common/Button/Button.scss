@@ -1,43 +1,22 @@
 @import "../../../scss/main.scss";
+
 .button {
-	position: relative;
-	background-color: $accent;
-	color: $second;
-	display: block;
-	height: 35px;
-	width: 35px;
-	border-radius: 50%;
-	// box-shadow: $shadow;
-	outline: none;
-	&:before {
-		content: '';
-		position: absolute;
-		display: block;
-		height: 2px;
-		width: 15px;
-		background-color: $second;
-		border-radius: 2px;
-		top: 50%;
-		left: 50%;
-		transform: translateY(-50%) translateX(-50%);
-	}
-	&:after {
-		content: '';
-		position: absolute;
-		display: block;
-		height: 15px;
-		width: 2px;
-		background-color: $second;
-		border-radius: 2px;
-		top: 50%;
-		left: 50%;
-		transform: translateY(-50%) translateX(-50%);
-	}
-	&:hover {
-		background-color: darken($accent, 5%);
-	}
-	&:active {
-		background-color: darken($accent, 10%);
-	}
-	
+  position: relative;
+  background-color: darken($additionalColor, 5%);
+  color: $backgroundColor;
+  display: block;
+  height: 35px;
+  padding: 0px 25px;
+  border-radius: 18px;
+  box-shadow: $shadow;
+  outline: none;
+
+  &:hover {
+    background-color: darken($additionalColor, 5%);
+  }
+
+  &:active {
+    background-color: darken($additionalColor, 10%);
+  }
+
 }

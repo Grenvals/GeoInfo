@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import './Checkbox.scss';
 
-const Checkbox = ({ name, cheked = false, onChange }) => {
+const Checkbox = ({ name, label, checked = false, onChange }) => {
   const [isChecked, setCheckedItems] = useState(false);
   const handleChange = () => {
     setCheckedItems(isChecked ? false : true);
@@ -16,9 +16,9 @@ const Checkbox = ({ name, cheked = false, onChange }) => {
         id={name}
         name={name}
         checked={isChecked}
-        onClick={handleChange}
+        onChange={handleChange}
       />
-      <label htmlFor={name}>{name}</label>
+      <label htmlFor={name}>{label}</label>
     </div>
   );
 };

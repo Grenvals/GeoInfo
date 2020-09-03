@@ -1,16 +1,16 @@
 import React from 'react';
 
-import cn from 'classnames';
-
 import './Button.scss';
 
-const Button = ({ className, onClick }) => {
+const Button = ({ name = 'Submit', onClick }) => {
   const handleClick = () => {
     onClick && onClick();
   };
   return (
-    <div className={cn('buttonWrap', { [className]: className })}>
-      <button className="button" onClick={handleClick}></button>
+    <div className="buttonWrap">
+      <button className="button" onClick={handleClick}>
+        {name}
+      </button>
     </div>
   );
 };

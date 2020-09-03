@@ -5,18 +5,21 @@ import { Checkbox } from '../Form/Checkbox/Checkbox';
 
 const OptionListBar = () => {
   const categoriesList = [
-    { name: 'pharmacies', isChecked: true },
-    { name: 'schools', isChecked: true },
-    { name: 'restaurants', isChecked: true },
+    { id: 1, name: 'pharmacies', isChecked: true },
+    { id: 2, name: 'schools', isChecked: true },
+    { id: 3, name: 'restaurants', isChecked: true },
   ];
   const categories = categoriesList.map((category) => (
-    <Checkbox
-      name={category.name}
-      cheked={category.isChecked}
-      onChange={(name, isChecked) => {
-        alert(name, isChecked);
-      }}
-    />
+    <li className="OptionListBar__listItem" key={category.id}>
+      <Checkbox
+        name={category.name}
+        label={category.name}
+        checked={category.isChecked}
+        onChange={(name, isChecked) => {
+          alert(name, isChecked);
+        }}
+      />
+    </li>
   ));
   return (
     <div className="OptionListBar">
