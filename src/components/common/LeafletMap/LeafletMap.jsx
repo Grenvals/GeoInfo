@@ -1,39 +1,21 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
-import L from 'leaflet';
-import redMarkerIcon from '../../../assets/img/markers/red-marker.svg';
-import greenMarkerIcon from '../../../assets/img/markers/green-marker.svg';
-import cuttentLocationMarkerIcon from '../../../assets/img/markers/home-marker.svg';
+import { Button } from '../Button/Button';
+import {
+  greenMarker,
+  redMarker,
+  currentLocationMarker,
+} from '../../../store/constants/leafletMarkers';
+
+import currentLocationIcon from '../../../assets/img/markers/home-marker.svg';
 
 import './LeafletMap.scss';
 
-L.Icon.Default.imagePath = 'https://unpkg.com/leaflet@1.7.1/dist/images/';
-
-const redMarker = new L.Icon({
-  iconUrl: redMarkerIcon,
-  iconRetinaUrl: redMarkerIcon,
-  iconSize: new L.Point(38, 58),
-  className: 'leaflet-div-icon',
-});
-
-const greenMarker = new L.Icon({
-  iconUrl: greenMarkerIcon,
-  iconRetinaUrl: greenMarkerIcon,
-  iconSize: new L.Point(38, 58),
-  className: 'leaflet-div-icon',
-});
-
-const currentLocationMarker = new L.Icon({
-  iconUrl: cuttentLocationMarkerIcon,
-  iconRetinaUrl: cuttentLocationMarkerIcon,
-  iconSize: new L.Point(47, 58),
-  className: 'leaflet-div-icon',
-});
-
-const LeafletMap = ({ initialSettings, markers }) => {
+const LeafletMap = ({ initialSettings, markers, onAddMarker }) => {
   const mapRef = useRef();
-
   const center = [initialSettings.lat, initialSettings.lng];
+  const [unsaveMarkers, setUnsaveMarkers] = useState([]);
+  const [isMarkerEditMode, setIsMarkerEditMode] = useState(false);
 
   useEffect(() => {
     setInterval(() => {
@@ -42,14 +24,6 @@ const LeafletMap = ({ initialSettings, markers }) => {
       }
     }, 1000);
   }, [mapRef]);
-
-  const [unsaveMarkers, setUnsaveMarkers] = useState([]);
-
-  const [isMarkerEditMode, setIsMarkerEditMode] = useState(false);
-
-  const onMarkerClick = (e) => {
-    console.log(e);
-  };
 
   const markersList = markers.map((marker) => (
     <Marker
@@ -61,40 +35,45 @@ const LeafletMap = ({ initialSettings, markers }) => {
         onMarkerClick(marker);
       }}>
       <Popup>
-        <div className="gggg">
+        <div className="markerPopup">
           {isMarkerEditMode ? <input type="text" /> : <p>{marker.name}</p>}
         </div>
       </Popup>
     </Marker>
   ));
 
-  const localMarkers = unsaveMarkers.map((marker) => (
+  const unsaveMarkersList = unsaveMarkers.map((marker) => (
     <Marker
       key={marker.id}
       position={[marker.latlng.lat, marker.latlng.lng]}
       icon={redMarker}
-      openPopup={true}
-      onClick={() => {
-        onMarkerClick(marker);
-      }}>
+      openPopup={true}>
       <Popup>
-        <div className="gggg">
+        <div className="markerPopup">
           {isMarkerEditMode ? <input type="text" /> : <p>{marker.name}</p>}
         </div>
       </Popup>
     </Marker>
   ));
 
+  const handleClick = () => {
+    if (unsaveMarkers.length > 0) {
+      for (let marker of unsaveMarkers) {
+        onAddMarker(marker.name, marker.category, marker.latlng);
+      }
+      setUnsaveMarkers([]);
+    }
+  };
+
   const addLocalMarker = (e) => {
-    const markers = [...unsaveMarkers];
-    const newId = `f${(+new Date()).toString(16)}`;
-    markers.push({
+    const newId = `localMarker${unsaveMarkers.length + 1}_${(+new Date()).toString(16)}`;
+    const newUnsaveMarker = {
       id: newId,
       name: 'New marker',
       category: 'another',
       latlng: e.latlng,
-    });
-    setUnsaveMarkers(markers);
+    };
+    setUnsaveMarkers([...unsaveMarkers, newUnsaveMarker]);
   };
 
   return (
@@ -110,15 +89,20 @@ const LeafletMap = ({ initialSettings, markers }) => {
         />
         <Marker position={center} icon={currentLocationMarker}>
           <Popup>
-            <img src={cuttentLocationMarkerIcon} alt="icon" />
+            <img src={currentLocationIcon} alt="icon" />
             <h3>Your current location:</h3>
             <p>latitude: {center[0].toFixed(3)}</p>
             <p>longitude: {center[1].toFixed(3)}</p>
           </Popup>
         </Marker>
         {markersList}
-        {localMarkers}
+        {unsaveMarkersList}
       </Map>
+      {unsaveMarkers.length > 0 && (
+        <div className="map__saveButton">
+          <Button onClick={handleClick} name={'Save markers'} />
+        </div>
+      )}
     </div>
   );
 };

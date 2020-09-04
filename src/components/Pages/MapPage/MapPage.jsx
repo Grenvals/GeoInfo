@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
+import { useSelector, useDispatch } from 'react-redux';
+
 import './MapPage.scss';
 import { useCurrentLocation } from '../../../hooks/useCurrentLocation';
 import { LeafletMap } from '../../common/LeafletMap/LeafletMap';
+import { addMarker } from '../../../store/reducers/mapReducer';
+import { getMarkers } from '../../../store/selectors/selectors';
 
 const geolocationOptions = {
   enableHighAccuracy: true,
@@ -11,8 +15,14 @@ const geolocationOptions = {
 };
 
 const MapPage = () => {
+  const markers = useSelector((state) => getMarkers(state));
+  const dispatch = useDispatch();
+
+  const addMapMarker = (name, category, latlng) => {
+    dispatch(addMarker(name, category, latlng));
+  };
+
   const { location: currentLocation } = useCurrentLocation(geolocationOptions);
-  currentLocation && console.log(currentLocation);
 
   const [initialSettings, setStartPosition] = useState();
   useEffect(() => {
@@ -31,49 +41,14 @@ const MapPage = () => {
     }
   }, [currentLocation]);
 
-  const markers = [
-    {
-      id: 1,
-      name: 'Pharmacy',
-      category: 'pharmacies',
-      latlng: {
-        lat: 50.430864,
-        lng: 30.415664,
-      },
-    },
-    {
-      id: 2,
-      name: 'Okko',
-      category: 'gas stations',
-      latlng: {
-        lat: 50.480864,
-        lng: 30.615664,
-      },
-    },
-    {
-      id: 3,
-      name: 'School 4',
-      category: 'schools',
-      latlng: {
-        lat: 50.540864,
-        lng: 30.415664,
-      },
-    },
-    {
-      id: 4,
-      name: 'Sacramento',
-      category: 'restaurants',
-      latlng: {
-        lat: 50.440864,
-        lng: 30.615664,
-      },
-    },
-  ];
-
   return (
     <div className="mapPage">
       {initialSettings && (
-        <LeafletMap initialSettings={initialSettings} markers={markers} />
+        <LeafletMap
+          initialSettings={initialSettings}
+          markers={markers}
+          onAddMarker={addMapMarker}
+        />
       )}
     </div>
   );

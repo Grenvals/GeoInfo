@@ -7,6 +7,15 @@
   border-radius: 15px;
   overflow: hidden;
   box-shadow: $shadow;
+  position: relative;
+
+  &__saveButton {
+    position: absolute;
+    bottom: 15px;
+    right: 50%;
+    transform: translateX(50%);
+    z-index: 9999;
+  }
 
   .leaflet-container {
     height: 100%;
