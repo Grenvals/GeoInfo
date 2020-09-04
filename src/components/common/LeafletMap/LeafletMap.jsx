@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Map, TileLayer, Marker, Popup, LayersControl, LayerGroup } from 'react-leaflet';
 import { Button } from '../Button/Button';
 import {
   greenMarker,
@@ -10,6 +10,8 @@ import {
 import currentLocationIcon from '../../../assets/img/markers/home-marker.svg';
 
 import './LeafletMap.scss';
+
+const { Overlay } = LayersControl;
 
 const LeafletMap = ({ initialSettings, markers, onAddMarker }) => {
   const mapRef = useRef();
@@ -36,7 +38,7 @@ const LeafletMap = ({ initialSettings, markers, onAddMarker }) => {
       }}>
       <Popup>
         <div className="markerPopup">
-          {isMarkerEditMode ? <input type="text" /> : <p>{marker.name}</p>}
+          <p>{marker.name}</p>
         </div>
       </Popup>
     </Marker>
@@ -50,7 +52,7 @@ const LeafletMap = ({ initialSettings, markers, onAddMarker }) => {
       openPopup={true}>
       <Popup>
         <div className="markerPopup">
-          {isMarkerEditMode ? <input type="text" /> : <p>{marker.name}</p>}
+          <p>{marker.name}</p>
         </div>
       </Popup>
     </Marker>
@@ -83,20 +85,26 @@ const LeafletMap = ({ initialSettings, markers, onAddMarker }) => {
         center={center}
         ref={mapRef}
         onClick={addLocalMarker}>
-        <TileLayer
-          attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Marker position={center} icon={currentLocationMarker}>
-          <Popup>
-            <img src={currentLocationIcon} alt="icon" />
-            <h3>Your current location:</h3>
-            <p>latitude: {center[0].toFixed(3)}</p>
-            <p>longitude: {center[1].toFixed(3)}</p>
-          </Popup>
-        </Marker>
-        {markersList}
-        {unsaveMarkersList}
+        <LayersControl position="topright">
+          <TileLayer
+            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Overlay name="Markers">
+            <LayerGroup id="lg1">
+              <Marker position={center} icon={currentLocationMarker}>
+                <Popup>
+                  <img src={currentLocationIcon} alt="icon" />
+                  <h3>Your current location:</h3>
+                  <p>latitude: {center[0].toFixed(3)}</p>
+                  <p>longitude: {center[1].toFixed(3)}</p>
+                </Popup>
+              </Marker>
+              {markersList}
+              {unsaveMarkersList}
+            </LayerGroup>
+          </Overlay>
+        </LayersControl>
       </Map>
       {unsaveMarkers.length > 0 && (
         <div className="map__saveButton">
