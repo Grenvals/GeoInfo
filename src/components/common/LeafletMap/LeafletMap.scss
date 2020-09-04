@@ -28,4 +28,18 @@
       color: $textColor;
     }
   }
+
+  .leaflet-div-icon {
+    border: none;
+    background: transparent;
+  }
+
+  .leaflet-popup-content-wrapper {
+    border-radius: 13px;
+    padding: 15px;
+  }
+
+  .leaflet-popup {
+    margin-bottom: 43px;
+  }
 }
