@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 
 import './Checkbox.scss';
 
-const Checkbox = ({ name, label, checked = false, onChange }) => {
-  const [isChecked, setCheckedItems] = useState(false);
+const Checkbox = ({ name, label, id, checked = true, onChange }) => {
+  const [isChecked, setCheckedItems] = useState(checked);
+
   const handleChange = () => {
     setCheckedItems(isChecked ? false : true);
-    onChange && onChange(name, isChecked);
+    onChange && onChange(id, isChecked ? false : true);
   };
+
   return (
     <div className="checkbox">
       <input

@@ -6,3 +6,7 @@ export const getMarkers = (state) => {
     activeCategories.some((category) => m.category === category)
   );
 };
+
+export const getCategories = (state) => {
+  return state.map.categories;
+};

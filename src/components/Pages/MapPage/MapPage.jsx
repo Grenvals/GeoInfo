@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import './MapPage.scss';
 import { useCurrentLocation } from '../../../hooks/useCurrentLocation';
 import { LeafletMap } from '../../common/LeafletMap/LeafletMap';
-import { addMarker } from '../../../store/reducers/mapReducer';
+import { addMarker } from '../../../store/actions/actions';
 import { getMarkers } from '../../../store/selectors/selectors';
 
 const geolocationOptions = {

@@ -1,30 +1,35 @@
 import React from 'react';
 
+import { useSelector, useDispatch } from 'react-redux';
+
 import './OptionListBar.scss';
 import { Checkbox } from '../Form/Checkbox/Checkbox';
+import { getCategories } from '../../../store/selectors/selectors';
+import { setCategoryStatus } from '../../../store/actions/actions';
 
 const OptionListBar = () => {
-  const categoriesList = [
-    { id: 1, name: 'pharmacies', isChecked: true },
-    { id: 2, name: 'schools', isChecked: true },
-    { id: 3, name: 'restaurants', isChecked: true },
-  ];
-  const categories = categoriesList.map((category) => (
-    <li className="OptionListBar__listItem" key={category.id}>
+  const categories = useSelector((state) => getCategories(state));
+  const dispatch = useDispatch();
+
+  const handleChange = (id, isActive) => {
+    dispatch(setCategoryStatus(id, isActive));
+  };
+
+  const categoriesList = categories.map((c) => (
+    <li className="OptionListBar__listItem" key={c.id}>
       <Checkbox
-        name={category.name}
-        label={category.name}
-        checked={category.isChecked}
-        onChange={(name, isChecked) => {
-          alert(name, isChecked);
-        }}
+        id={c.id}
+        name={c.name}
+        label={c.name}
+        checked={c.isActive}
+        onChange={handleChange}
       />
     </li>
   ));
   return (
     <div className="OptionListBar">
-      <h2 className="OptionListBar__title">Options</h2>
-      <ul className="OptionListBar__list">{categories}</ul>
+      <h2 className="OptionListBar__title">Markers</h2>
+      <ul className="OptionListBar__list">{categoriesList}</ul>
     </div>
   );
 };
