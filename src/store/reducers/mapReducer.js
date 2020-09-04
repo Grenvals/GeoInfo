@@ -1,4 +1,4 @@
-import { ADD_MARKER, SET_CATEGORY_STATUS } from '../constants/constants';
+import { ADD_MARKER, SET_CATEGORY_STATUS, SET_MAP_STATUS } from '../constants/constants';
 import { updateObjectInArray } from '../../utils/object-helper';
 import { initialState } from '../state/state';
 
@@ -23,6 +23,12 @@ const mapReducer = (state = initialState, action) => {
         categories: updateObjectInArray(state.categories, action.payload.id, 'id', {
           isActive: action.payload.isActive,
         }),
+      };
+    }
+    case SET_MAP_STATUS: {
+      return {
+        ...state,
+        isMapActive: action.payload.isMapActive,
       };
     }
     default:

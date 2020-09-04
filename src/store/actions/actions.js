@@ -1,4 +1,4 @@
-import { ADD_MARKER, SET_CATEGORY_STATUS } from '../constants/constants';
+import { ADD_MARKER, SET_CATEGORY_STATUS, SET_MAP_STATUS } from '../constants/constants';
 
 export const addMarker = (name, category, latlng) => ({
   type: ADD_MARKER,
@@ -14,5 +14,12 @@ export const setCategoryStatus = (id, isActive) => ({
   payload: {
     id,
     isActive,
+  },
+});
+
+export const setMapStatus = (isMapActive) => ({
+  type: SET_MAP_STATUS,
+  payload: {
+    isMapActive,
   },
 });

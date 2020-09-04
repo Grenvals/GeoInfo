@@ -2,14 +2,15 @@ import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import './OptionListBar.scss';
 import { Checkbox } from '../Form/Checkbox/Checkbox';
 import { getCategories } from '../../../store/selectors/selectors';
 import { setCategoryStatus } from '../../../store/actions/actions';
 
+import './OptionListBar.scss';
+
 const OptionListBar = () => {
-  const categories = useSelector((state) => getCategories(state));
   const dispatch = useDispatch();
+  const categories = useSelector((state) => getCategories(state));
 
   const handleChange = (id, isActive) => {
     dispatch(setCategoryStatus(id, isActive));
@@ -26,9 +27,10 @@ const OptionListBar = () => {
       />
     </li>
   ));
+
   return (
     <div className="OptionListBar">
-      <h2 className="OptionListBar__title">Markers</h2>
+      <h2 className="OptionListBar__title">Сategories</h2>
       <ul className="OptionListBar__list">{categoriesList}</ul>
     </div>
   );

@@ -1,7 +1,8 @@
 import React from 'react';
 
-import './AuthorPage.scss';
 import { Logo } from '../../common/Logo/Logo';
+
+import './AuthorPage.scss';
 
 const AuthorPage = () => {
   return (
@@ -11,11 +12,11 @@ const AuthorPage = () => {
         <p className="info__version">Version 1.0.3</p>
         <h1 className="info__name">
           Made by
-          <a href="http://grenvalz.kl.com.ua/" className="info__link">
+          <a className="info__link" href="http://grenvalz.kl.com.ua/">
             Valentyn Dubin
           </a>
         </h1>
-        <a href="https://github.com/Grenvals/MapInfo" className="info__link">
+        <a className="info__link" href="https://github.com/Grenvals/MapInfo">
           Repository on Github
         </a>
       </section>

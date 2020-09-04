@@ -10,3 +10,7 @@ export const getMarkers = (state) => {
 export const getCategories = (state) => {
   return state.map.categories;
 };
+
+export const getIsMapActive = (state) => {
+  return state.map.isMapActive;
+};

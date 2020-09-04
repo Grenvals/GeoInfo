@@ -1,6 +1,6 @@
 {
-    "name": "TestMap",
-    "short_name": "TastMap",
+    "name": "MapInfo",
+    "short_name": "MapInfo",
     "theme_color": "#ffffff",
     "background_color": "#ffffff",
     "display": "standalone",

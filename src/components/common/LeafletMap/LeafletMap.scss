@@ -45,10 +45,26 @@
 
   .leaflet-popup-content-wrapper {
     border-radius: 13px;
-    padding: 15px;
+    padding: 5px 15px;
+  }
+
+  .leaflet-popup-content p {
+    margin: 15px 0;
   }
 
   .leaflet-popup {
     margin-bottom: 43px;
+  }
+}
+
+.markerPopup {
+  &__name {
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  &__info {
+    line-height: 1.6;
+    margin: 0px;
   }
 }

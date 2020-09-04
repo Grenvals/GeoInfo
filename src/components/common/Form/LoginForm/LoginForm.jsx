@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
-import './LoginForm.scss';
 import { Button } from '../../Button/Button';
+
+import './LoginForm.scss';
 
 const LoginForm = ({ onSubmit }) => {
   const [error, setError] = useState(false);

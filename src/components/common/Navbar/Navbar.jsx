@@ -1,9 +1,10 @@
 import React from 'react';
 
+import { NavbarLink } from './NavbarLink/NavbarLink';
+
 import mapIcon from '../../../assets/img/nav/newspaper.svg';
 import autorizationIcon from '../../../assets/img/nav/settings.svg';
 import authorIcon from '../../../assets/img/nav/user.svg';
-import { NavbarLink } from './NavbarLink/NavbarLink';
 
 import './Navbar.scss';
 
