@@ -22,6 +22,8 @@
    |          ├── state          /* initial state
    |          └── store.js       /* create store         
    |     ├── scss                /* general style, reset & normalaize
+   |     ├── utils               /* utils, handlers
+   |     ├── App.js              /* general component, router
    |     └── index.js            /* app starts here ;)
    |      ...
    ├── .babelrc                  /* babel config

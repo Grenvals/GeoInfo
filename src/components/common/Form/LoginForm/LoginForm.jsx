@@ -31,9 +31,9 @@ const LoginForm = ({ onSubmit }) => {
     event.preventDefault();
     if (required(login) || required(password)) {
       setError('Fields cant be blank!');
-    } else if (maxLength(login, 40) || maxLength(password, 40)) {
-      setError('Min length is 5');
-    } else if (maxLength(login, 40) || maxLength(password, 40)) {
+    } else if (minLength(login, 10) || maxLength(password, 40)) {
+      setError('Min length is 10');
+    } else if (minLength(login, 10) || maxLength(password, 40)) {
       setError('Max length is 40');
     } else {
       onSubmit(login, password);

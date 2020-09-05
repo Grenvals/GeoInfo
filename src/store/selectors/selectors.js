@@ -7,6 +7,10 @@ export const getMarkers = (state) => {
   );
 };
 
+export const getCurrentUserLocation = (state) => {
+  return state.map.currentUserLocation;
+};
+
 export const getCategories = (state) => {
   return state.map.categories;
 };

@@ -1,4 +1,8 @@
 export const initialState = {
+  currentUserLocation: {
+    lat: 50.440864,
+    lng: 30.515664,
+  },
   markers: [
     {
       id: 1,

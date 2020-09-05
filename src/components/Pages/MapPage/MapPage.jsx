@@ -5,7 +5,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useCurrentLocation } from '../../../hooks/useCurrentLocation';
 import { LeafletMap } from '../../common/LeafletMap/LeafletMap';
 import { addMarker, setMapStatus } from '../../../store/actions/actions';
-import { getMarkers, getIsMapActive } from '../../../store/selectors/selectors';
+import {
+  getMarkers,
+  getIsMapActive,
+  getCurrentUserLocation,
+} from '../../../store/selectors/selectors';
 
 import './MapPage.scss';
 
@@ -16,37 +20,37 @@ const geolocationOptions = {
 };
 
 const MapPage = () => {
-  const { location: currentLocation } = useCurrentLocation(geolocationOptions);
+  const dispatch = useDispatch();
+  const [initialSettings, setStartPosition] = useState();
+  const currentUserLocation = useSelector((state) => getCurrentUserLocation(state));
   const markers = useSelector((state) => getMarkers(state));
   const isMapActive = useSelector((state) => getIsMapActive(state));
-  const dispatch = useDispatch();
 
+  const { location: currentLocation } = useCurrentLocation(geolocationOptions);
+
+  const initialMapZoom = 10;
+
+  // AC
   const addMapMarker = (name, category, latlng) => {
     dispatch(addMarker(name, category, latlng));
   };
 
-  const mapMapStatus = (isMapActive) => {
+  const setActiveMapStatus = (isMapActive) => {
     dispatch(setMapStatus(isMapActive));
   };
 
   useEffect(() => {
-    mapMapStatus(true);
-    return () => mapMapStatus(false);
+    setActiveMapStatus(true);
+    return () => setActiveMapStatus(false);
   }, [isMapActive]);
 
-  const [initialSettings, setStartPosition] = useState();
   useEffect(() => {
     if (currentLocation) {
-      setStartPosition({
-        lat: currentLocation.latitude,
-        lng: currentLocation.longitude,
-        zoom: 10,
-      });
+      setStartPosition({ ...currentLocation, zoom: initialMapZoom });
     } else {
       setStartPosition({
-        lat: 50.440864,
-        lng: 30.515664,
-        zoom: 10,
+        ...currentUserLocation,
+        zoom: initialMapZoom,
       });
     }
   }, [currentLocation]);
