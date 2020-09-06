@@ -1,28 +1,6 @@
 @import "../../../../scss/main.scss";
 
 .loginForm {
-  &__item {
-    margin-bottom: 15px;
-  }
-
-  &__label {
-    display: block;
-    font-size: 13px;
-    padding-left: 10px;
-    margin-bottom: 5px;
-    color: $backgroundColor;
-  }
-
-  &__input {
-    display: block;
-    width: 100%;
-    padding: 0px 15px;
-    border: 1px solid $backgroundColor;
-    border-radius: 13px;
-    line-height: 30px;
-    font-size: 14px;
-  }
-
   &__buttonItem {
     @include flexbox();
     align-items: center;

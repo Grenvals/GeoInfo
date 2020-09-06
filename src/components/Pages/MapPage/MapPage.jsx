@@ -22,8 +22,11 @@ const geolocationOptions = {
 
 const MapPage = React.memo(() => {
   const dispatch = useDispatch();
+
   const [initialSettings, setStartPosition] = useState();
+
   const currentUserLocation = useSelector((state) => getCurrentUserLocation(state));
+
   const markers = useShallowEqualSelector(getMarkers);
   const isMapActive = useSelector((state) => getIsMapActive(state));
 
@@ -47,11 +50,13 @@ const MapPage = React.memo(() => {
   useEffect(() => {
     if (currentLocation) {
       setStartPosition({ ...currentLocation, zoom: initialMapZoom });
+      console.log('11111');
     } else {
       setStartPosition({
         ...currentUserLocation,
         zoom: initialMapZoom,
       });
+      console.log('22222');
     }
   }, [currentLocation]);
 
