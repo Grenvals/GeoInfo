@@ -31,8 +31,8 @@ const OptionListBar = React.memo(() => {
 
   return (
     <div className="OptionListBar">
-      <h2 className="OptionListBar__title">Сategories</h2>
-      <ul className="OptionListBar__list">{categoriesList}</ul>
+      {/* <h2 className="OptionListBar__title">Сategories</h2> */}
+      {/* <ul className="OptionListBar__list">{categoriesList}</ul> */}
     </div>
   );
 });

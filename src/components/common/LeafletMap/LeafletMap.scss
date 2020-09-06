@@ -20,40 +20,61 @@
   .leaflet-container {
     height: 100%;
     width: 100%;
-  }
 
-  .leaflet-control-zoom {
-    margin: 15px;
-    border-radius: 16px;
-    overflow: hidden;
-    border: none;
-    box-shadow: none;
-
-    a {
+    .leaflet-control-zoom {
+      margin: 15px;
+      border-radius: 16px;
+      overflow: hidden;
       border: none;
-      height: 40px;
-      width: 33px;
-      line-height: 40px;
-      color: $textColor;
+      box-shadow: none;
+
+      a {
+        border: none;
+        height: 40px;
+        width: 33px;
+        line-height: 40px;
+        color: $textColor;
+      }
     }
-  }
 
-  .leaflet-div-icon {
-    border: none;
-    background: transparent;
-  }
+    .leaflet-control-layers {
+      border: none;
+      border-radius: 20px;
+      margin: 15px;
+      padding: 8px;
 
-  .leaflet-popup-content-wrapper {
-    border-radius: 13px;
-    padding: 5px 15px;
-  }
+      a {
+        height: 25px;
+        width: 25px;
+      }
 
-  .leaflet-popup-content p {
-    margin: 15px 0;
-  }
+      .leaflet-control-layers-list {
+        min-width: 130px;
+        padding: 0px 15px;
+      }
 
-  .leaflet-popup {
-    margin-bottom: 43px;
+      .leaflet-control-layers-selector {
+        margin-right: 5px;
+      }
+    }
+
+    .leaflet-div-icon {
+      border: none;
+      background: transparent;
+    }
+
+    .leaflet-popup-content-wrapper {
+      border-radius: 13px;
+      padding: 5px 15px;
+    }
+
+    .leaflet-popup-content p {
+      margin: 15px 0;
+    }
+
+    .leaflet-popup {
+      margin-bottom: 43px;
+    }
   }
 }
 
