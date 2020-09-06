@@ -9,6 +9,7 @@
   justify-content: center;
   align-items: center;
   box-shadow: $shadow;
+  padding: 15px;
 
   &__bg {
     position: absolute;
@@ -27,6 +28,10 @@
     background: $additionalColor;
     border-radius: 15px;
     min-width: 350px;
+
+    @media (max-width:$md4+px) {
+      min-width: 270px;
+    }
   }
 
   &__title {

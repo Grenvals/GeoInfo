@@ -2,7 +2,7 @@
 
 .button {
   position: relative;
-  background-color: darken($additionalColor, 5%);
+  background-color: lighten($additionalColor, 5%);
   color: $backgroundColor;
   display: block;
   height: 35px;
@@ -11,13 +11,16 @@
   border-radius: 18px;
   box-shadow: $shadow;
   outline: none;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: background-color 0.2s;
 
   &:hover {
-    background-color: darken($additionalColor, 5%);
+    background-color: darken($additionalColor, 2%);
   }
 
   &:active {
-    background-color: darken($additionalColor, 10%);
+    background-color: darken($additionalColor, 5%);
   }
 
 }

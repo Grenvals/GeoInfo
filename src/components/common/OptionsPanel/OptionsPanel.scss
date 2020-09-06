@@ -1,0 +1,94 @@
+@import "./../../../scss/main.scss";
+
+.optionsPanel {
+  position: relative;
+  z-index: 9999;
+  background: $backgroundColor;
+  max-width: 350px;
+
+  @media (max-width:$md2+px) {
+    position: fixed;
+    top: 55px;
+    bottom: 45px;
+    left: 0px;
+    width: 60%;
+    min-width: 300px;
+    margin: 0px;
+    padding: 15px 30px 15px 15px;
+    transform: translateX(-100%);
+    transition: transform 0.3s;
+
+    &_active {
+      transform: translateX(0%);
+    }
+
+    &>* {
+      margin-bottom: 0px;
+    }
+  }
+
+  @media (max-width:$md4+px) {
+    min-width: 250px;
+  }
+
+  &>* {
+    width: 100%;
+  }
+
+  &__btn {
+    display: none;
+    z-index: 999;
+    position: absolute;
+    top: 30%;
+    left: 100%;
+    height: 40px;
+    width: 50px;
+    background: lighten($additionalColor, 10%);
+    border-radius: 0px 10px 10px 0px;
+    box-shadow: $shadow;
+
+    &:before,
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 50%;
+      height: 5%;
+      border-radius: 5px;
+      background: $backgroundColor;
+      left: 50%;
+      top: 50%;
+      transition: transform 0.3s;
+    }
+
+    &:before {
+      transform: translateX(-50%) translateY(-250%);
+    }
+
+    &:after {
+      transform: translateX(-50%) translateY(150%);
+    }
+
+    @media (max-width: $md2+px) {
+      display: block;
+    }
+
+    &:active {
+      background: $additionalColor;
+    }
+
+    &_active {
+      background: lighten($additionalColor, 7%);
+
+      &:before {
+        transform: translateX(-50%) translateY(-50%) rotate(45deg);
+        width: 40%;
+      }
+
+      &:after {
+        transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+        width: 40%;
+      }
+    }
+  }
+}

@@ -10,6 +10,7 @@
   @media (max-width: $md2+px) {
     border-radius: 0px;
     background: $backgroundColor;
+    box-shadow: $shadow;
   }
 
   &__list {

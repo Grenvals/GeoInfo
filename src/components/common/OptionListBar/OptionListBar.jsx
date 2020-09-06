@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Checkbox } from '../Form/Checkbox/Checkbox';
@@ -10,7 +9,6 @@ import './OptionListBar.scss';
 
 const OptionListBar = React.memo(() => {
   const dispatch = useDispatch();
-  // const categories = useSelector((state) => getCategories(state));
   const categories = useSelector((state) => getCategories(state));
 
   const handleChange = useCallback((id, isActive) => {
@@ -31,8 +29,8 @@ const OptionListBar = React.memo(() => {
 
   return (
     <div className="OptionListBar">
-      {/* <h2 className="OptionListBar__title">Сategories</h2> */}
-      {/* <ul className="OptionListBar__list">{categoriesList}</ul> */}
+      <h2 className="OptionListBar__title">Сategories</h2>
+      <ul className="OptionListBar__list">{categoriesList}</ul>
     </div>
   );
 });
