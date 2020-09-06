@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -10,6 +10,7 @@ import {
   getIsMapActive,
   getCurrentUserLocation,
 } from '../../../store/selectors/selectors';
+import { useShallowEqualSelector } from '../../../hooks/useShallowEqualSelector';
 
 import './MapPage.scss';
 
@@ -19,25 +20,24 @@ const geolocationOptions = {
   maximumAge: 1000 * 3600 * 24,
 };
 
-const MapPage = () => {
+const MapPage = React.memo(() => {
   const dispatch = useDispatch();
   const [initialSettings, setStartPosition] = useState();
   const currentUserLocation = useSelector((state) => getCurrentUserLocation(state));
-  const markers = useSelector((state) => getMarkers(state));
+  const markers = useShallowEqualSelector(getMarkers);
   const isMapActive = useSelector((state) => getIsMapActive(state));
 
   const { location: currentLocation } = useCurrentLocation(geolocationOptions);
 
   const initialMapZoom = 10;
 
-  // AC
-  const addMapMarker = (name, category, latlng) => {
+  const addMapMarker = useCallback((name, category, latlng) => {
     dispatch(addMarker(name, category, latlng));
-  };
+  });
 
-  const setActiveMapStatus = (isMapActive) => {
+  const setActiveMapStatus = useCallback((isMapActive) => {
     dispatch(setMapStatus(isMapActive));
-  };
+  });
 
   useEffect(() => {
     setActiveMapStatus(true);
@@ -66,6 +66,6 @@ const MapPage = () => {
       )}
     </div>
   );
-};
+});
 
 export { MapPage };

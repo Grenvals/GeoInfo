@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -8,13 +8,14 @@ import { setCategoryStatus } from '../../../store/actions/actions';
 
 import './OptionListBar.scss';
 
-const OptionListBar = () => {
+const OptionListBar = React.memo(() => {
   const dispatch = useDispatch();
+  // const categories = useSelector((state) => getCategories(state));
   const categories = useSelector((state) => getCategories(state));
 
-  const handleChange = (id, isActive) => {
+  const handleChange = useCallback((id, isActive) => {
     dispatch(setCategoryStatus(id, isActive));
-  };
+  });
 
   const categoriesList = categories.map((c) => (
     <li className="OptionListBar__listItem" key={c.id}>
@@ -34,6 +35,6 @@ const OptionListBar = () => {
       <ul className="OptionListBar__list">{categoriesList}</ul>
     </div>
   );
-};
+});
 
 export { OptionListBar };
