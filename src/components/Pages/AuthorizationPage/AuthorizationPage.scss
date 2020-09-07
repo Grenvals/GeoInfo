@@ -11,6 +11,10 @@
   box-shadow: $shadow;
   padding: 15px;
 
+  @media (max-width:$md4+px) {
+    border-radius: 0px;
+  }
+
   &__bg {
     position: absolute;
     top: 0px;

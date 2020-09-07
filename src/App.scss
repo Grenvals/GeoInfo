@@ -8,6 +8,10 @@
   .container {
     min-height: 100%;
     height: 1px;
+
+    @media (max-width:$md4+px) {
+      padding: 0px;
+    }
   }
 
   &__wrap {
@@ -19,6 +23,10 @@
 
     @media (max-width:$md2+px) {
       padding: 65px 0px 60px 0px;
+    }
+
+    @media (max-width:$md4+px) {
+      padding: 0px 0px 45px 0px;
     }
   }
 

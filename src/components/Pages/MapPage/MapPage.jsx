@@ -50,13 +50,11 @@ const MapPage = React.memo(() => {
   useEffect(() => {
     if (currentLocation) {
       setStartPosition({ ...currentLocation, zoom: initialMapZoom });
-      console.log('11111');
     } else {
       setStartPosition({
         ...currentUserLocation,
         zoom: initialMapZoom,
       });
-      console.log('22222');
     }
   }, [currentLocation]);
 

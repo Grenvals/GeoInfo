@@ -9,6 +9,10 @@
   box-shadow: $shadow;
   position: relative;
 
+  @media (max-width:$md4+px) {
+    border-radius: 0px;
+  }
+
   &__saveButton {
     position: absolute;
     bottom: 15px;
