@@ -66,13 +66,17 @@ const LeafletMap = ({ initialSettings, markers, onAddMarker }) => {
     setUnsaveMarkers([...unsaveMarkers, newUnsaveMarker]);
   };
 
-  const handleMapClick = () => {
+  const saveUnsaveMarkers = () => {
     if (unsaveMarkers.length > 0) {
       for (let marker of unsaveMarkers) {
         onAddMarker(marker.name, marker.category, marker.latlng);
       }
       setUnsaveMarkers([]);
     }
+  };
+
+  const clearUnsaveMarkers = () => {
+    setUnsaveMarkers([]);
   };
 
   return (
@@ -110,8 +114,9 @@ const LeafletMap = ({ initialSettings, markers, onAddMarker }) => {
         </LayersControl>
       </Map>
       {unsaveMarkers.length > 0 && (
-        <div className="map__saveButton">
-          <Button onClick={handleMapClick} name={'Save markers'} />
+        <div className="map__controlButtons">
+          <Button onClick={saveUnsaveMarkers} name="Save markers" />
+          <Button onClick={clearUnsaveMarkers} name="Clear" color="white" />
         </div>
       )}
     </div>

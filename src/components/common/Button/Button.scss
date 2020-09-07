@@ -23,4 +23,17 @@
     background-color: darken($additionalColor, 5%);
   }
 
+  &_white {
+    background-color: $backgroundColor;
+    color: $additionalColor;
+
+    &:hover {
+      background-color: darken($backgroundColor, 10%);
+    }
+
+    &:active {
+      background-color: darken($backgroundColor, 20%);
+    }
+  }
+
 }

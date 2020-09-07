@@ -13,12 +13,23 @@
     border-radius: 0px;
   }
 
-  &__saveButton {
+  &__controlButtons {
+    @include flexbox();
     position: absolute;
     bottom: 15px;
     right: 50%;
     transform: translateX(50%);
     z-index: 9999;
+    justify-content: center;
+    align-items: center;
+
+    &>* {
+      margin-right: 15px;
+
+      &:last-child {
+        margin-right: 0px;
+      }
+    }
   }
 
   .leaflet-container {
