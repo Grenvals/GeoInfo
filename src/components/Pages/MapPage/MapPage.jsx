@@ -22,14 +22,11 @@ const geolocationOptions = {
 
 const MapPage = React.memo(() => {
   const dispatch = useDispatch();
-
-  const [initialSettings, setStartPosition] = useState();
-
   const currentUserLocation = useSelector((state) => getCurrentUserLocation(state));
-
-  const markers = useShallowEqualSelector(getMarkers);
   const isMapActive = useSelector((state) => getIsMapActive(state));
 
+  const markers = useShallowEqualSelector(getMarkers);
+  const [initialSettings, setStartPosition] = useState();
   const { location: currentLocation } = useCurrentLocation(geolocationOptions);
 
   const initialMapZoom = 10;
