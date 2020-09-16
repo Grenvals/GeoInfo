@@ -2,7 +2,15 @@ import React from 'react';
 
 import './InputField.scss';
 
-const InputField = ({ label, type, value, placeholder, onChange }) => {
+interface InputFieldPropsType {
+  label: string;
+  type: string;
+  value: string;
+  placeholder: string;
+  onChange(e: React.ChangeEvent<HTMLInputElement>): void;
+}
+
+const InputField = ({ label, type, value, placeholder, onChange }: InputFieldPropsType) => {
   return (
     <div className="inputField">
       <label className="inputField__label" htmlFor="login">

@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "es5", // Визначаємо цільову версію ECMAScript
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],  
+    "allowJs": true,  
+    "skipLibCheck": true, 
+    "esModuleInterop": true,  
+    "allowSyntheticDefaultImports": true,  
+    "strict": true,  
+    "forceConsistentCasingInFileNames": true,  
+    "module": "esnext",  
+    "moduleResolution": "node",  
+    "resolveJsonModule": true,  
+    "jsx": "react",  
+    "sourceMap": true,  
+    "noUnusedLocals": true,  
+    "noUnusedParameters": true,  
+    "experimentalDecorators": true,  
+    "incremental": true,  
+    "noFallthroughCasesInSwitch": true, 
+    "noEmit": true
+  },
+  "include": [
+    "src/**/*"  
+  ],
+  "exclude": ["node_modules", "build"],
+  "files": ["custom.d.ts"], 
+}

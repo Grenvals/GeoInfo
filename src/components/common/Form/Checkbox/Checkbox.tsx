@@ -2,9 +2,16 @@ import React, { useState } from 'react';
 
 import './Checkbox.scss';
 
-const Checkbox = ({ name, label, id, checked = true, onChange }) => {
-  const [isChecked, setCheckedItems] = useState(checked);
+interface CheckboxPropsType {
+  name: string;
+  label: string;
+  id: string;
+  checked: boolean;
+  onChange(id: string, isChecked: boolean): void;
+}
 
+const Checkbox = ({ name, label, id, checked = true, onChange }: CheckboxPropsType) => {
+  const [isChecked, setCheckedItems] = useState(checked);
   const handleChange = () => {
     setCheckedItems(isChecked ? false : true);
     onChange && onChange(id, isChecked ? false : true);

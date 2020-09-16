@@ -6,20 +6,24 @@ import './LoginForm.scss';
 import { required, maxLength, minLength } from '../../../../utils/validators';
 import { InputField } from '../InputField/InputField';
 
-const LoginForm = ({ onSubmit }) => {
-  const [isValidationActive, setIsValidationActive] = useState(false);
-  const [error, setError] = useState(false);
-  const [login, setLogin] = useState('');
-  const [password, setPassword] = useState('');
+interface LoginFormPropsType {
+  onSubmit(login: string, password: string): void;
+}
 
-  const resetForm = () => {
+const LoginForm = ({ onSubmit }: LoginFormPropsType) => {
+  const [isValidationActive, setIsValidationActive] = useState<boolean>(false);
+  const [error, setError] = useState<false | string>(false);
+  const [login, setLogin] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+
+  const resetForm = (): void => {
     setLogin('');
     setPassword('');
     setError(false);
     setIsValidationActive(false);
   };
 
-  const formValidation = () => {
+  const formValidation = (): void | true => {
     if (required(login) || required(password)) {
       setError('Fields cant be blank!');
     } else if (minLength(login, 10) || minLength(password, 10)) {
@@ -38,7 +42,7 @@ const LoginForm = ({ onSubmit }) => {
     }
   }, [isValidationActive, login, password]);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     if (formValidation() === true) {
       onSubmit(login, password);
@@ -55,14 +59,14 @@ const LoginForm = ({ onSubmit }) => {
         type="text"
         value={login}
         placeholder="Login"
-        onChange={(e) => setLogin(e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>): void => setLogin(e.target.value)}
       />
       <InputField
         label="Password"
         type="password"
         value={password}
         placeholder="******"
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>): void => setPassword(e.target.value)}
       />
       <div className="loginForm__buttonItem">
         {error !== false && <span className="loginForm__error">{error}</span>}

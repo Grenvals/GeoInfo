@@ -1,5 +1,6 @@
-import React, { useEffect, useReducer } from 'react';
-import { Redirect, Route, Switch, withRouter, BrowserRouter } from 'react-router-dom';
+import React from 'react';
+
+import { Redirect, Route, Switch, BrowserRouter } from 'react-router-dom';
 
 import { Sidebar } from './components/Sidebar/Sidebar';
 import { Header } from './components/Header/Header';
@@ -11,7 +12,7 @@ import './App.scss';
 import './scss/global.scss';
 import './scss/main.scss';
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <BrowserRouter>
       <div className="app">

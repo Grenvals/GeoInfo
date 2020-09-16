@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Map, TileLayer, Marker, Popup, LayersControl, LayerGroup } from 'react-leaflet';
 
 import { Button } from '../Button/Button';
@@ -13,11 +13,26 @@ import currentLocationIcon from '../../../assets/img/markers/home-marker.svg';
 
 import './LeafletMap.scss';
 
-const LeafletMap = ({ initialSettings, markers, onAddMarker }) => {
+import { MarkerType, LatIngType } from '../../../types/types';
+
+type InitialSettingsType = {
+  lat: number,
+  lng: number,
+  zoom: number,
+};
+
+interface LeafletMapPropsType {
+  initialSettings: InitialSettingsType;
+  markers: Array<MarkerType>;
+  onAddMarker(name: string, category: string, latlng: LatIngType): void;
+}
+
+const LeafletMap = ({ initialSettings, markers, onAddMarker }: LeafletMapPropsType) => {
   const { Overlay } = LayersControl;
-  const mapRef = useRef();
-  const center = [initialSettings.lat, initialSettings.lng];
-  const [unsaveMarkers, setUnsaveMarkers] = useState([]);
+
+  const mapRef = useRef<Map>(null);
+  const center = { lat: initialSettings.lat, lng: initialSettings.lng };
+  const [unsaveMarkers, setUnsaveMarkers] = useState<Array<MarkerType>>([]);
 
   useEffect(() => {
     setInterval(() => {
@@ -27,7 +42,7 @@ const LeafletMap = ({ initialSettings, markers, onAddMarker }) => {
     }, 1000);
   }, [mapRef]);
 
-  const markersList = markers.map((marker) => (
+  const markersList = markers.map((marker: MarkerType) => (
     <Marker
       key={marker.id}
       position={[marker.latlng.lat, marker.latlng.lng]}
@@ -41,7 +56,7 @@ const LeafletMap = ({ initialSettings, markers, onAddMarker }) => {
     </Marker>
   ));
 
-  const unsaveMarkersList = unsaveMarkers.map((marker) => (
+  const unsaveMarkersList = unsaveMarkers.map((marker: MarkerType) => (
     <Marker
       key={marker.id}
       position={[marker.latlng.lat, marker.latlng.lng]}
@@ -55,7 +70,7 @@ const LeafletMap = ({ initialSettings, markers, onAddMarker }) => {
     </Marker>
   ));
 
-  const addLocalMarker = (e) => {
+  const addLocalMarker = (e: any) => {
     const newId = `localMarker${unsaveMarkers.length + 1}_${(+new Date()).toString(16)}`;
     const newUnsaveMarker = {
       id: newId,
@@ -81,11 +96,7 @@ const LeafletMap = ({ initialSettings, markers, onAddMarker }) => {
 
   return (
     <div className="map">
-      <Map
-        zoom={initialSettings.zoom}
-        center={center}
-        ref={mapRef}
-        onClick={addLocalMarker}>
+      <Map zoom={initialSettings.zoom} center={center} ref={mapRef} onclick={addLocalMarker}>
         <LayersControl position="topright">
           <TileLayer
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -96,14 +107,10 @@ const LeafletMap = ({ initialSettings, markers, onAddMarker }) => {
               <Marker position={center} icon={currentLocationMarker}>
                 <Popup>
                   <div className="markerPopup">
-                    <img
-                      className="markerPopup__img"
-                      src={currentLocationIcon}
-                      alt="icon"
-                    />
+                    <img className="markerPopup__img" src={currentLocationIcon} alt="icon" />
                     <h3 className="markerPopup__name">Your current location:</h3>
-                    <p className="markerPopup__info">latitude: {center[0].toFixed(3)}</p>
-                    <p className="markerPopup__info">longitude: {center[1].toFixed(3)}</p>
+                    <p className="markerPopup__info">latitude: {center.lat.toFixed(3)}</p>
+                    <p className="markerPopup__info">longitude: {center.lng.toFixed(3)}</p>
                   </div>
                 </Popup>
               </Marker>

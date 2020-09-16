@@ -4,13 +4,16 @@ import { NavLink } from 'react-router-dom';
 
 import './NavbarLink.scss';
 
-const NavbarLink = ({ title, link, linkIcon }) => {
+type NavbarLinkProps = {
+  title: string,
+  link: string,
+  linkIcon: string,
+};
+
+const NavbarLink = ({ title, link, linkIcon }: NavbarLinkProps) => {
   return (
     <li className="navbarLink">
-      <NavLink
-        to={link}
-        className="navbarLink__link"
-        activeClassName="navbarLink__link_active">
+      <NavLink to={link} className="navbarLink__link" activeClassName="navbarLink__link_active">
         <img className="navbarLink__img" src={linkIcon} alt="link icon" />
         <h3 className="navbarLink__title">{title}</h3>
       </NavLink>

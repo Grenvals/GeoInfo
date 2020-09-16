@@ -1,8 +1,9 @@
 import { ADD_MARKER, SET_CATEGORY_STATUS, SET_MAP_STATUS } from '../constants/constants';
 import { updateObjectInArray } from '../../utils/object-helper';
-import { initialState } from '../state/state';
+import { initialState, InitialStateType } from '../state/state';
+import { MapActionTypes } from './../actions/actions';
 
-const mapReducer = (state = initialState, action) => {
+const mapReducer = (state = initialState, action: MapActionTypes): InitialStateType => {
   switch (action.type) {
     case ADD_MARKER: {
       const newId = `markersf${(+new Date()).toString(16)}_${state.markers.length + 1}`;

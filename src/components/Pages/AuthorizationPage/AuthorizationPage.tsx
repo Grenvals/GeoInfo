@@ -1,15 +1,13 @@
 import React from 'react';
 
-import { Checkbox } from '../../common/Form/Checkbox/Checkbox';
-import { Button } from '../../common/Button/Button';
 import { LoginForm } from '../../common/Form/LoginForm/LoginForm';
 
 import backgroundImg from '../../../assets/img/background-street.png';
 
 import './AuthorizationPage.scss';
 
-const AuthorizationPage = () => {
-  const handleSubmit = (login, password) => {
+const AuthorizationPage: React.FC = () => {
+  const handleSubmit = (login: string, password: string): void => {
     alert(`Login: ${login}, Password: ${password}`);
   };
 

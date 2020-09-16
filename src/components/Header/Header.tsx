@@ -4,7 +4,7 @@ import { Logo } from '../common/Logo/Logo';
 
 import './Header.scss';
 
-const Header = () => {
+const Header: React.FC = () => {
   return (
     <header className="header">
       <div className="container">

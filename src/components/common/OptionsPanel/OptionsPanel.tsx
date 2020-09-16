@@ -5,10 +5,10 @@ import { OptionListBar } from '../../common/OptionListBar/OptionListBar';
 
 import './OptionsPanel.scss';
 
-const OptionsPanel = () => {
-  const [isPanelActive, setIsPanelActive] = useState(false);
+const OptionsPanel: React.FC = () => {
+  const [isPanelActive, setIsPanelActive] = useState<boolean>(false);
 
-  const handleClick = () => {
+  const handleClick = (): void => {
     setIsPanelActive(isPanelActive ? false : true);
   };
 

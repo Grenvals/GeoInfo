@@ -1,3 +1,16 @@
+import { CategoryType, LatIngType, MarkerType } from '../../types/types';
+
+export type InitialStateType = {
+  currentUserLocation: LatIngType,
+  markers: Array<MarkerType>,
+  categories: Array<CategoryType>,
+  isMapActive: boolean,
+};
+
+export interface RootStateType {
+  map: InitialStateType;
+}
+
 export const initialState = {
   currentUserLocation: {
     lat: 50.440864,
@@ -5,7 +18,7 @@ export const initialState = {
   },
   markers: [
     {
-      id: 1,
+      id: '1',
       name: 'Pharmacy',
       category: 'pharmacies',
       latlng: {
@@ -14,7 +27,7 @@ export const initialState = {
       },
     },
     {
-      id: 2,
+      id: '2',
       name: 'Okko',
       category: 'gas stations',
       latlng: {
@@ -23,7 +36,7 @@ export const initialState = {
       },
     },
     {
-      id: 3,
+      id: '3',
       name: 'School 4',
       category: 'schools',
       latlng: {
@@ -32,7 +45,7 @@ export const initialState = {
       },
     },
     {
-      id: 4,
+      id: '4',
       name: 'Sacramento',
       category: 'restaurants',
       latlng: {
@@ -41,7 +54,7 @@ export const initialState = {
       },
     },
     {
-      id: 5,
+      id: '5',
       name: 'Grand',
       category: 'restaurants',
       latlng: {
@@ -50,7 +63,7 @@ export const initialState = {
       },
     },
     {
-      id: 6,
+      id: '6',
       name: 'School 9',
       category: 'schools',
       latlng: {
@@ -59,7 +72,7 @@ export const initialState = {
       },
     },
     {
-      id: 7,
+      id: '7',
       name: 'School 15',
       category: 'schools',
       latlng: {
@@ -68,7 +81,7 @@ export const initialState = {
       },
     },
     {
-      id: 8,
+      id: '8',
       name: 'School 18',
       category: 'schools',
       latlng: {
@@ -77,7 +90,7 @@ export const initialState = {
       },
     },
     {
-      id: 9,
+      id: '9',
       name: 'Central park',
       category: 'another',
       latlng: {
@@ -86,7 +99,7 @@ export const initialState = {
       },
     },
     {
-      id: 10,
+      id: '10',
       name: 'Pharmacy',
       category: 'pharmacies',
       latlng: {
@@ -95,7 +108,7 @@ export const initialState = {
       },
     },
     {
-      id: 11,
+      id: '11',
       name: 'Pharmacy',
       category: 'pharmacies',
       latlng: {
@@ -104,7 +117,7 @@ export const initialState = {
       },
     },
     {
-      id: 12,
+      id: '12',
       name: 'Pharmacy',
       category: 'pharmacies',
       latlng: {
@@ -113,7 +126,7 @@ export const initialState = {
       },
     },
     {
-      id: 13,
+      id: '13',
       name: 'Pharmacy',
       category: 'pharmacies',
       latlng: {
@@ -122,7 +135,7 @@ export const initialState = {
       },
     },
     {
-      id: 14,
+      id: '14',
       name: 'Pharmacy',
       category: 'pharmacies',
       latlng: {
@@ -132,11 +145,11 @@ export const initialState = {
     },
   ],
   categories: [
-    { id: 1, name: 'restaurants', isActive: true },
-    { id: 2, name: 'pharmacies', isActive: true },
-    { id: 3, name: 'gas stations', isActive: true },
-    { id: 4, name: 'schools', isActive: true },
-    { id: 5, name: 'another', isActive: true },
+    { id: '1', name: 'restaurants', isActive: true },
+    { id: '2', name: 'pharmacies', isActive: true },
+    { id: '3', name: 'gas stations', isActive: true },
+    { id: '4', name: 'schools', isActive: true },
+    { id: '5', name: 'another', isActive: true },
   ],
-  mapIsActive: false,
+  isMapActive: false,
 };

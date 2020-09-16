@@ -5,6 +5,7 @@ import path from 'path';
 
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 import autoprefixer from 'autoprefixer';
 
@@ -18,19 +19,19 @@ module.exports = {
     filename: '[name].js',
   },
   resolve: {
-    extensions: ['.jsx', '.js', '*'],
+    extensions: ['.jsx', '.js', '*', '.tsx', '.ts'],
   },
   module: {
     rules: [
       // JS
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         use: [
           {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env', '@babel/react'],
+              presets: ['@babel/preset-env', '@babel/react', '@babel/preset-typescript'],
               cacheDirectory: true,
               plugins: ['react-hot-loader/babel'],
             },
@@ -94,6 +95,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new ForkTsCheckerWebpackPlugin(),
     new webpack.SourceMapDevToolPlugin({
       filename: '[name].js.map',
       exclude: ['bundle.js'],

@@ -4,7 +4,7 @@ import { Logo } from '../../common/Logo/Logo';
 
 import './AuthorPage.scss';
 
-const AuthorPage = () => {
+const AuthorPage: React.FC = () => {
   return (
     <div className="author">
       <section className="author__content info">

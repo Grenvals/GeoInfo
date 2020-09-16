@@ -11,6 +11,7 @@ import ImageMinPlugin from 'imagemin-webpack-plugin';
 import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
   mode: 'production',
@@ -29,13 +30,13 @@ module.exports = {
     rules: [
       // JS
       {
-        test: /\.(jsx?)$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         use: [
           {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env', '@babel/react'],
+              presets: ['@babel/preset-env', '@babel/react', '@babel/preset-typescript'],
               cacheDirectory: true,
               plugins: ['react-hot-loader/babel'],
             },
@@ -99,6 +100,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new ForkTsCheckerWebpackPlugin(),
     new webpack.SourceMapDevToolPlugin({
       filename: '[name].js.map',
       exclude: ['bundle.js'],

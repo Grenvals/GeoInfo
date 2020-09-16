@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react';
 
 const useCurrentLocation = (options = {}) => {
-  const [location, setLocation] = useState();
-  const [error, setError] = useState();
+  const [location, setLocation] = useState<any | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSuccess = (pos) => {
-    const { latitude, longitude } = pos.coords;
+  const handleSuccess = (pos: any) => {
+    // const { latitude, longitude } = pos.coords;
     setLocation({
-      lat: latitude,
-      lng: longitude,
+      lat: pos.coords.latitude,
+      lng: pos.coords.longitude,
     });
   };
 
-  const handleError = (error) => {
+  const handleError = (error: any) => {
     setError(error.message);
   };
 

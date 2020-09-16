@@ -3,7 +3,14 @@ import cn from 'classnames';
 
 import './Button.scss';
 
-const Button = ({ name = 'Submit', onClick, disabled = false, color }) => {
+interface ButtonPropsType {
+  name?: string,
+  disabled?: boolean,
+  color?: string,
+  onClick?():void,
+}
+
+const Button = ({ name = 'Submit', onClick, disabled = false, color }: ButtonPropsType) => {
   const handleClick = () => {
     onClick && onClick();
   };

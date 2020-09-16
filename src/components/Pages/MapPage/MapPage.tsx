@@ -13,8 +13,16 @@ import {
 import { useShallowEqualSelector } from '../../../hooks/useShallowEqualSelector';
 
 import './MapPage.scss';
+import { LatIngType } from '../../../types/types';
+import { RootStateType } from '../../../store/state/state';
 
-const geolocationOptions = {
+type GeolocationOptionsType = {
+  enableHighAccuracy: boolean,
+  timeout: number,
+  maximumAge: number,
+};
+
+const geolocationOptions: GeolocationOptionsType = {
   enableHighAccuracy: true,
   timeout: 1000 * 60 * 1,
   maximumAge: 1000 * 3600 * 24,
@@ -22,22 +30,25 @@ const geolocationOptions = {
 
 const MapPage = React.memo(() => {
   const dispatch = useDispatch();
-  const currentUserLocation = useSelector((state) => getCurrentUserLocation(state));
-  const isMapActive = useSelector((state) => getIsMapActive(state));
-
+  const currentUserLocation = useSelector((state: RootStateType) => getCurrentUserLocation(state));
+  const isMapActive = useSelector((state: RootStateType) => getIsMapActive(state));
   const markers = useShallowEqualSelector(getMarkers);
-  const [initialSettings, setStartPosition] = useState();
+  const initialMapZoom: number = 10;
+
+  const [initialSettings, setStartPosition] = useState({
+    ...currentUserLocation,
+    zoom: initialMapZoom,
+  });
+
   const { location: currentLocation } = useCurrentLocation(geolocationOptions);
 
-  const initialMapZoom = 10;
-
-  const addMapMarker = useCallback((name, category, latlng) => {
+  const addMapMarker = useCallback((name: string, category: string, latlng: LatIngType): void => {
     dispatch(addMarker(name, category, latlng));
-  });
+  }, []);
 
-  const setActiveMapStatus = useCallback((isMapActive) => {
+  const setActiveMapStatus = useCallback((isMapActive: boolean): void => {
     dispatch(setMapStatus(isMapActive));
-  });
+  }, []);
 
   useEffect(() => {
     setActiveMapStatus(true);
@@ -47,11 +58,6 @@ const MapPage = React.memo(() => {
   useEffect(() => {
     if (currentLocation) {
       setStartPosition({ ...currentLocation, zoom: initialMapZoom });
-    } else {
-      setStartPosition({
-        ...currentUserLocation,
-        zoom: initialMapZoom,
-      });
     }
   }, [currentLocation]);
 

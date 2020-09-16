@@ -6,6 +6,7 @@
       },
       "useBuiltIns": "entry"
     }],
-    "@babel/react"
+    "@babel/react",
+    "@babel/preset-typescript"
   ]
 }
