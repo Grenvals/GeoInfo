@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
+import { LatIngType } from '../types/types';
 
 const useCurrentLocation = (options = {}) => {
-  const [location, setLocation] = useState<any | null>(null);
+  const [location, setLocation] = useState<LatIngType | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const handleSuccess = (pos: any) => {
-    // const { latitude, longitude } = pos.coords;
     setLocation({
       lat: pos.coords.latitude,
       lng: pos.coords.longitude,
