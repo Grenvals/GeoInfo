@@ -17,14 +17,14 @@ module.exports = {
   mode: 'production',
   devtool: false,
   entry: {
-    main: ['@babel/polyfill', './src/index.js'],
+    main: ['@babel/polyfill', './src/index.tsx'],
   },
   output: {
     filename: '[name].js',
     path: path.join(__dirname, 'dist'),
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx'],
+    extensions: ['.jsx', '.js', '*', '.tsx', '.ts'],
   },
   module: {
     rules: [

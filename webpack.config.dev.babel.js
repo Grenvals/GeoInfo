@@ -5,6 +5,7 @@ import path from 'path';
 
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
+
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 import autoprefixer from 'autoprefixer';
@@ -13,7 +14,7 @@ module.exports = {
   mode: 'development',
   devtool: false,
   entry: {
-    main: ['@babel/polyfill', './src/index.js'],
+    main: ['@babel/polyfill', './src/index.tsx'],
   },
   output: {
     filename: '[name].js',
@@ -105,9 +106,7 @@ module.exports = {
       filename: './index.html',
       template: './public/index.html',
     }),
-    new CopyWebpackPlugin([
-      { from: './public', to: 'dist', ignore: ['./public/index.html'] },
-    ]),
+    new CopyWebpackPlugin([{ from: './public', to: 'dist', ignore: ['./public/index.html'] }]),
   ],
   devServer: {
     inline: true,

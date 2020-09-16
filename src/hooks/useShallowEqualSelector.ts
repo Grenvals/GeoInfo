@@ -1,5 +1,8 @@
+import { RootStateType } from './../store/state/state';
 import { shallowEqual, useSelector } from 'react-redux';
 
-export const useShallowEqualSelector = (selector: any): any => {
+type SelectorType = (state: RootStateType) => any;
+
+export const useShallowEqualSelector = (selector: SelectorType): any => {
   return useSelector(selector, shallowEqual);
 };
