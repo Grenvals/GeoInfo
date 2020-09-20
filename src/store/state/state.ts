@@ -156,32 +156,32 @@ export const initialState = {
   mapBGLayers: [
     {
       id: '01',
-      name: 'city',
+      name: 'City map',
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       isActive: false,
     },
     {
       id: '02',
-      name: 'topographic',
+      name: 'Topographic outdoor map',
       url: 'https://api.maptiler.com/maps/outdoor/{z}/{x}/{y}.png/?key=Z38k7XaAQZ2rMxzRHYsZ',
       isActive: true,
     },
     {
       id: '03',
-      name: 'space',
+      name: 'Satellite images map',
       url:
         'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
       isActive: false,
     },
     {
       id: '04',
-      name: 'roads',
+      name: 'General staff map',
       url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
       isActive: false,
     },
     {
       id: '05',
-      name: 'forest',
+      name: 'Forest map',
       url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       isActive: false,
     },

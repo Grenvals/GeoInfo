@@ -1,14 +1,14 @@
 @import "../../../../scss/main.scss";
 
-.MapBGLayerOptions {
+.CheckboxesGroup {
+  overflow: hidden;
+  list-style: none;
 
   &__title {
     display: block;
     text-align: center;
     font-size: 14px;
     font-weight: 600;
-    line-height: 35px;
-    height: 35px;
     color: $backgroundColor;
     background: $additionalColor;
     box-shadow: $shadow;
@@ -18,12 +18,12 @@
     display: block;
     font-size: 14px;
     text-align: center;
-    // line-height: 2.0;
+    line-height: 2.6;
     font-weight: 600;
   }
 
   &__list {
-    padding: 15px 15px 30px 15px;
+    padding: 5px 15px 15px 15px;
 
     &>* {
       margin-bottom: 5px;

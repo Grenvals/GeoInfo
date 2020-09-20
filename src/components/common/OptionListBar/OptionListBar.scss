@@ -1,40 +1,24 @@
 @import "../../../scss/main.scss";
 
 .OptionListBar {
+  overflow: hidden;
   box-shadow: $shadow;
   border-radius: 10px;
-  overflow: hidden;
-  list-style: none;
+
+  &__wrap {
+    overflow: auto;
+  }
 
   &__title {
     display: block;
     text-align: center;
     font-size: 14px;
     font-weight: 600;
-    line-height: 35px;
-    height: 35px;
+    line-height: 30px;
+    height: 30px;
     color: $backgroundColor;
     background: $additionalColor;
     box-shadow: $shadow;
-  }
-
-  &__subtitle {
-    display: block;
-    font-size: 14px;
-    text-align: center;
-    line-height: 2.6;
-    font-weight: 600;
-  }
-
-  &__list {
-    padding: 15px 15px 30px 15px;
-
-    &>* {
-      margin-bottom: 5px;
-
-      &:last-child {
-        margin-bottom: 0px;
-      }
-    }
+    margin-bottom: 15px;
   }
 }
