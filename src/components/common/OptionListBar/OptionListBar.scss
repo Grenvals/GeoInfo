@@ -1,14 +1,19 @@
 @import "../../../scss/main.scss";
 
 .OptionListBar {
-  overflow: hidden;
   box-shadow: $shadow;
+  position: relative;
   border-radius: 10px;
   height: 100%;
+  overflow: hidden;
 
   &__wrap {
+    position: absolute;
+    top: 30px;
+    width: 100%;
+    height: calc(100% - 40px);
     overflow: auto;
-    height: calc(100% - 30px);
+
   }
 
   &__title {

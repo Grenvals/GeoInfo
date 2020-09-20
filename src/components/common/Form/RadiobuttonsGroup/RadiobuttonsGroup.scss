@@ -17,6 +17,9 @@
     font-size: 14px;
     text-align: center;
     font-weight: 600;
+    color: $backgroundColor;
+    background: $accentColor;
+    line-height: 1.7;
   }
 
   &__list {

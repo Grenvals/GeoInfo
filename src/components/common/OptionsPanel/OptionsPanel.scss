@@ -7,9 +7,13 @@
   max-width: 350px;
   flex: 1;
   height: 0px;
+  border-radius: 10px;
   max-height: 600px;
+  box-shadow: $shadow;
 
   @media (max-width:$md2+px) {
+    height: auto;
+    max-height: none;
     position: fixed;
     top: 55px;
     bottom: 45px;

@@ -10,7 +10,7 @@
     font-size: 14px;
     font-weight: 600;
     color: $backgroundColor;
-    background: $additionalColor;
+    background: $accentColor;
     box-shadow: $shadow;
   }
 
@@ -18,7 +18,9 @@
     display: block;
     font-size: 14px;
     text-align: center;
-    line-height: 2.6;
+    color: $backgroundColor;
+    background: $accentColor;
+    line-height: 1.7;
     font-weight: 600;
   }
 

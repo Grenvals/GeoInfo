@@ -4,12 +4,16 @@
   position: relative;
   z-index: 999;
   flex: 0 0 300px;
-  margin: 0px 15px 15px 0px;
+  margin: 0px 15px 0px 0px;
   @include flexbox();
   flex-direction: column;
 
   &>* {
     margin-bottom: 15px;
+
+    &:last-child {
+      margin-bottom: 0px;
+    }
   }
 
   @media (max-width:$md2+px) {

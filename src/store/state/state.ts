@@ -157,33 +157,54 @@ export const initialState = {
   mapBGLayers: [
     {
       id: '01',
-      name: 'City map',
-      url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-      isActive: false,
-    },
-    {
-      id: '02',
-      name: 'Topographic outdoor map',
+      name: 'Topographic outdoor',
       url: 'https://api.maptiler.com/maps/outdoor/{z}/{x}/{y}.png/?key=Z38k7XaAQZ2rMxzRHYsZ',
       isActive: true,
     },
     {
-      id: '03',
-      name: 'Satellite images map',
+      id: '02',
+      name: 'Satellite',
       url:
         'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
       isActive: false,
     },
     {
-      id: '04',
-      name: 'General staff map',
+      id: '03',
+      name: 'General staff',
       url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
       isActive: false,
     },
     {
-      id: '05',
-      name: 'Forest map',
+      id: '04',
+      name: 'Forests',
       url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      isActive: false,
+    },
+    {
+      id: '05',
+      name: 'Bisycle roads',
+      url: 'https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png',
+      isActive: false,
+    },
+    {
+      id: '06',
+      name: 'Transport',
+      url:
+        'https://tile.thunderforest.com/transport-dark/{z}/{x}/{y}.png?apikey=d84cfed64b4c44e387554542ce28042a',
+      isActive: false,
+    },
+    {
+      id: '07',
+      name: 'Mountain hiking 3d',
+      url:
+        'https://tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=d84cfed64b4c44e387554542ce28042a',
+      isActive: false,
+    },
+    {
+      id: '08',
+      name: 'Railways',
+      url:
+        'https://tile.thunderforest.com/pioneer/{z}/{x}/{y}.png?apikey=d84cfed64b4c44e387554542ce28042a',
       isActive: false,
     },
   ],
@@ -200,14 +221,14 @@ export const initialState = {
       name: 'rain layer',
       url:
         'https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=d7c6eaa896714bc9e2fd14eee64307eb',
-      isActive: true,
+      isActive: false,
     },
     {
       id: '03',
       name: 'air pressure layer',
       url:
         'https://tile.openweathermap.org/map/pressure_new/{z}/{x}/{y}.png?appid=d7c6eaa896714bc9e2fd14eee64307eb',
-      isActive: true,
+      isActive: false,
     },
   ],
 };
