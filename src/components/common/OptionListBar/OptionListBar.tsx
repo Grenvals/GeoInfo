@@ -14,6 +14,7 @@ import { RootStateType } from '../../../store/state/state';
 
 import './OptionListBar.scss';
 import { RadiobuttonsGroup } from '../Form/RadiobuttonsGroup/RadiobuttonsGroup';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 const OptionListBar = React.memo(() => {
   const dispatch = useDispatch();
@@ -37,21 +38,23 @@ const OptionListBar = React.memo(() => {
     <div className="OptionListBar">
       <h2 className="OptionListBar__title">Options</h2>
       <div className="OptionListBar__wrap">
-        <RadiobuttonsGroup
-          title="Type"
-          radiobuttonsList={mapBGLayers}
-          onChange={setActiveMapBGLAyer}
-        />
-        <CheckboxesGroup
-          title="Layers"
-          checkboxesList={mapLayers}
-          onChange={onChangeMapLayerStatus}
-        />
-        <CheckboxesGroup
-          title="Markers"
-          checkboxesList={markersCategories}
-          onChange={onChangeCategoryStatus}
-        />
+        <Scrollbars autoHeightMin={`100%`} autoHide autoHideTimeout={1000} autoHideDuration={400}>
+          <RadiobuttonsGroup
+            title="Type"
+            radiobuttonsList={mapBGLayers}
+            onChange={setActiveMapBGLAyer}
+          />
+          <CheckboxesGroup
+            title="Layers"
+            checkboxesList={mapLayers}
+            onChange={onChangeMapLayerStatus}
+          />
+          <CheckboxesGroup
+            title="Markers"
+            checkboxesList={markersCategories}
+            onChange={onChangeCategoryStatus}
+          />
+        </Scrollbars>
       </div>
     </div>
   );
