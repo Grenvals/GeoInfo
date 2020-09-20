@@ -15,3 +15,10 @@ export type CategoryType = {
   name: string,
   isActive: boolean,
 };
+
+export type MapBGLayerType = {
+  id: string,
+  name: string,
+  url: string,
+  isActive: boolean,
+};

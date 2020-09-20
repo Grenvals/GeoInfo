@@ -1,4 +1,9 @@
-import { ADD_MARKER, SET_CATEGORY_STATUS, SET_MAP_STATUS } from '../constants/constants';
+import {
+  ADD_MARKER,
+  SET_CATEGORY_STATUS,
+  SET_CURRENT_MAP_BG_LAYER,
+  SET_MAP_STATUS,
+} from '../constants/constants';
 import { updateObjectInArray } from '../../utils/object-helper';
 import { initialState, InitialStateType } from '../state/state';
 import { MapActionTypes } from './../actions/actions';
@@ -30,6 +35,17 @@ const mapReducer = (state = initialState, action: MapActionTypes): InitialStateT
       return {
         ...state,
         isMapActive: action.payload.isMapActive,
+      };
+    }
+    case SET_CURRENT_MAP_BG_LAYER: {
+      return {
+        ...state,
+        mapBGLayers: state.mapBGLayers.map((l) => {
+          if (l.id === action.payload.id) {
+            return { ...l, isActive: true };
+          }
+          return { ...l, isActive: false };
+        }),
       };
     }
     default:

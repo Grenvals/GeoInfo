@@ -1,10 +1,11 @@
-import { CategoryType, LatIngType, MarkerType } from '../../types/types';
+import { CategoryType, LatIngType, MarkerType, MapBGLayerType } from '../../types/types';
 
 export type InitialStateType = {
   currentUserLocation: LatIngType,
   markers: Array<MarkerType>,
   categories: Array<CategoryType>,
   isMapActive: boolean,
+  mapBGLayers: Array<MapBGLayerType>,
 };
 
 export interface RootStateType {
@@ -152,4 +153,37 @@ export const initialState = {
     { id: '5', name: 'another', isActive: true },
   ],
   isMapActive: false,
+  mapBGLayers: [
+    {
+      id: '01',
+      name: 'city',
+      url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      isActive: false,
+    },
+    {
+      id: '02',
+      name: 'topographic',
+      url: 'https://api.maptiler.com/maps/outdoor/{z}/{x}/{y}.png/?key=Z38k7XaAQZ2rMxzRHYsZ',
+      isActive: true,
+    },
+    {
+      id: '03',
+      name: 'space',
+      url:
+        'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+      isActive: false,
+    },
+    {
+      id: '04',
+      name: 'roads',
+      url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+      isActive: false,
+    },
+    {
+      id: '05',
+      name: 'forest',
+      url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      isActive: false,
+    },
+  ],
 };

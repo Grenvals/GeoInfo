@@ -24,10 +24,16 @@ type InitialSettingsType = {
 interface LeafletMapPropsType {
   initialSettings: InitialSettingsType;
   markers: Array<MarkerType>;
+  activeMapBGLayerUrl: string;
   onAddMarker(name: string, category: string, latlng: LatIngType): void;
 }
 
-const LeafletMap = ({ initialSettings, markers, onAddMarker }: LeafletMapPropsType) => {
+const LeafletMap = ({
+  initialSettings,
+  markers,
+  activeMapBGLayerUrl,
+  onAddMarker,
+}: LeafletMapPropsType) => {
   const { Overlay } = LayersControl;
 
   const mapRef = useRef<Map>(null);
@@ -99,10 +105,20 @@ const LeafletMap = ({ initialSettings, markers, onAddMarker }: LeafletMapPropsTy
       <Map zoom={initialSettings.zoom} center={center} ref={mapRef} onclick={addLocalMarker}>
         <LayersControl position="topright">
           <TileLayer
-            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&amp;copy <a href="http://grenvalz.kl.com.ua/">Valentyn Dubin</a>'
+            url={activeMapBGLayerUrl}
           />
-          <Overlay name="Markers" checked={true}>
+          <TileLayer
+            attribution='&amp;copy <a href="http://grenvalz.kl.com.ua/">Valentyn Dubin</a>'
+            // url="https://tile.openweathermap.org/map/pressure_new/{z}/{x}/{y}.png?appid=d7c6eaa896714bc9e2fd14eee64307eb"
+            url="https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=d7c6eaa896714bc9e2fd14eee64307eb"
+            // url="https://tile.openweathermap.org/map/pressure_new/{z}/{x}/{y}.png?appid=d7c6eaa896714bc9e2fd14eee64307eb"
+          />
+          <TileLayer
+            attribution='&amp;copy <a href="http://grenvalz.kl.com.ua/">Valentyn Dubin</a>'
+            url="https://tiles.waqi.info/tiles/usepa-pm25/{z}/{x}/{y}.png?token=2bfd892052160b7462ce84641a8cc819547c7f49"
+          />
+          <Overlay name="Saved Markers" checked={true}>
             <LayerGroup id="lg1">
               <Marker position={center} icon={currentLocationMarker}>
                 <Popup>
@@ -115,8 +131,10 @@ const LeafletMap = ({ initialSettings, markers, onAddMarker }: LeafletMapPropsTy
                 </Popup>
               </Marker>
               {markersList}
-              {unsaveMarkersList}
             </LayerGroup>
+          </Overlay>
+          <Overlay name="Unsave markers" checked={true}>
+            <LayerGroup id="lg1">{unsaveMarkersList}</LayerGroup>
           </Overlay>
         </LayersControl>
       </Map>

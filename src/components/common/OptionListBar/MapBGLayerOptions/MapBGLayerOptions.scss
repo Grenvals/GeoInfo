@@ -1,10 +1,6 @@
-@import "../../../scss/main.scss";
+@import "../../../../scss/main.scss";
 
-.OptionListBar {
-  box-shadow: $shadow;
-  border-radius: 10px;
-  overflow: hidden;
-  list-style: none;
+.MapBGLayerOptions {
 
   &__title {
     display: block;
@@ -22,7 +18,7 @@
     display: block;
     font-size: 14px;
     text-align: center;
-    line-height: 2.6;
+    // line-height: 2.0;
     font-weight: 600;
   }
 

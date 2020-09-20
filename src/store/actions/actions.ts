@@ -1,5 +1,11 @@
 import { LatIngType } from '../../types/types';
-import { ADD_MARKER, SET_CATEGORY_STATUS, SET_MAP_STATUS } from '../constants/constants';
+import {
+  ADD_MARKER,
+  GET_LOAD_DATA,
+  SET_CATEGORY_STATUS,
+  SET_MAP_STATUS,
+  SET_CURRENT_MAP_BG_LAYER,
+} from '../constants/constants';
 
 interface addMarkerType {
   type: typeof ADD_MARKER;
@@ -22,6 +28,12 @@ interface setMapStatusType {
   type: typeof SET_MAP_STATUS;
   payload: {
     isMapActive: boolean,
+  };
+}
+interface setCurrentMapBGLayerType {
+  type: typeof SET_CURRENT_MAP_BG_LAYER;
+  payload: {
+    id: string,
   };
 }
 
@@ -49,4 +61,19 @@ export const setMapStatus = (isMapActive: boolean): setMapStatusType => ({
   },
 });
 
-export type MapActionTypes = addMarkerType | setCategoryStatusType | setMapStatusType;
+export const setCurrentMapBGLayer = (id: string): setCurrentMapBGLayerType => ({
+  type: SET_CURRENT_MAP_BG_LAYER,
+  payload: {
+    id,
+  },
+});
+
+export const getData = () => ({
+  type: GET_LOAD_DATA,
+});
+
+export type MapActionTypes =
+  | addMarkerType
+  | setCategoryStatusType
+  | setMapStatusType
+  | setCurrentMapBGLayerType;
