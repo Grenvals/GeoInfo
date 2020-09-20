@@ -1,4 +1,4 @@
-import { CategoryType, LatIngType, MapBGLayerType, MarkerType } from '../../types/types';
+import { CategoryType, LatIngType, MapLayerType, MarkerType } from '../../types/types';
 import { RootStateType } from '../state/state';
 
 export const getMarkers = (state: RootStateType): Array<MarkerType> => {
@@ -22,11 +22,18 @@ export const getIsMapActive = (state: RootStateType): boolean => {
   return state.map.isMapActive;
 };
 
-export const getMapBGLayers = (state: RootStateType): Array<MapBGLayerType> => {
-  console.log(state.map.mapBGLayers);
+export const getMapLayers = (state: RootStateType): Array<MapLayerType> => {
+  return state.map.mapLayers;
+};
+
+export const getActiveMapLayers = (state: RootStateType): Array<MapLayerType> => {
+  return state.map.mapLayers.filter((l) => l.isActive === true);
+};
+
+export const getMapBGLayers = (state: RootStateType): Array<MapLayerType> => {
   return state.map.mapBGLayers;
 };
 
-export const getActiveMapBGLayer = (state: RootStateType): MapBGLayerType => {
+export const getActiveMapBGLayer = (state: RootStateType): MapLayerType => {
   return state.map.mapBGLayers.filter((l) => l.isActive === true)[0];
 };

@@ -13,7 +13,7 @@ import currentLocationIcon from '../../../assets/img/markers/home-marker.svg';
 
 import './LeafletMap.scss';
 
-import { MarkerType, LatIngType } from '../../../types/types';
+import { MarkerType, LatIngType, MapLayerType } from '../../../types/types';
 
 type InitialSettingsType = {
   lat: number,
@@ -24,14 +24,16 @@ type InitialSettingsType = {
 interface LeafletMapPropsType {
   initialSettings: InitialSettingsType;
   markers: Array<MarkerType>;
-  activeMapBGLayerUrl: string;
+  mapBGLayer: MapLayerType;
+  mapLayers: Array<MapLayerType>;
   onAddMarker(name: string, category: string, latlng: LatIngType): void;
 }
 
 const LeafletMap = ({
   initialSettings,
   markers,
-  activeMapBGLayerUrl,
+  mapBGLayer,
+  mapLayers,
   onAddMarker,
 }: LeafletMapPropsType) => {
   const { Overlay } = LayersControl;
@@ -47,6 +49,14 @@ const LeafletMap = ({
       }
     }, 1000);
   }, [mapRef]);
+
+  const mapLayersList = mapLayers.map((l) => (
+    <TileLayer
+      key={l.id}
+      attribution='&amp;copy <a href="http://grenvalz.kl.com.ua/">Valentyn Dubin</a>'
+      url={l.url}
+    />
+  ));
 
   const markersList = markers.map((marker: MarkerType) => (
     <Marker
@@ -106,18 +116,9 @@ const LeafletMap = ({
         <LayersControl position="topright">
           <TileLayer
             attribution='&amp;copy <a href="http://grenvalz.kl.com.ua/">Valentyn Dubin</a>'
-            url={activeMapBGLayerUrl}
+            url={mapBGLayer.url}
           />
-          <TileLayer
-            attribution='&amp;copy <a href="http://grenvalz.kl.com.ua/">Valentyn Dubin</a>'
-            // url="https://tile.openweathermap.org/map/pressure_new/{z}/{x}/{y}.png?appid=d7c6eaa896714bc9e2fd14eee64307eb"
-            url="https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=d7c6eaa896714bc9e2fd14eee64307eb"
-            // url="https://tile.openweathermap.org/map/pressure_new/{z}/{x}/{y}.png?appid=d7c6eaa896714bc9e2fd14eee64307eb"
-          />
-          <TileLayer
-            attribution='&amp;copy <a href="http://grenvalz.kl.com.ua/">Valentyn Dubin</a>'
-            url="https://tiles.waqi.info/tiles/usepa-pm25/{z}/{x}/{y}.png?token=2bfd892052160b7462ce84641a8cc819547c7f49"
-          />
+          {mapLayersList}
           <Overlay name="Saved Markers" checked={true}>
             <LayerGroup id="lg1">
               <Marker position={center} icon={currentLocationMarker}>

@@ -3,8 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { CheckboxesGroup } from '../Form/CheckboxesGroup/CheckboxesGroup';
 
-import { getCategories, getMapBGLayers } from '../../../store/selectors/selectors';
-import { setCategoryStatus, setCurrentMapBGLayer } from '../../../store/actions/actions';
+import { getCategories, getMapBGLayers, getMapLayers } from '../../../store/selectors/selectors';
+import {
+  setCategoryStatus,
+  setCurrentMapBGLayer,
+  setMapLayerStatus,
+} from '../../../store/actions/actions';
 
 import { RootStateType } from '../../../store/state/state';
 
@@ -15,9 +19,14 @@ const OptionListBar = React.memo(() => {
   const dispatch = useDispatch();
   const markersCategories = useSelector((state: RootStateType) => getCategories(state));
   const mapBGLayers = useSelector((state: RootStateType) => getMapBGLayers(state));
+  const mapLayers = useSelector((state: RootStateType) => getMapLayers(state));
 
   const onChangeCategoryStatus = useCallback((id: string, isActive: boolean) => {
     dispatch(setCategoryStatus(id, isActive));
+  }, []);
+
+  const onChangeMapLayerStatus = useCallback((id: string, isActive: boolean) => {
+    dispatch(setMapLayerStatus(id, isActive));
   }, []);
 
   const setActiveMapBGLAyer = useCallback((id: string): void => {
@@ -29,9 +38,14 @@ const OptionListBar = React.memo(() => {
       <h2 className="OptionListBar__title">Options</h2>
       <div className="OptionListBar__wrap">
         <RadiobuttonsGroup
-          title="Map type"
+          title="Type"
           radiobuttonsList={mapBGLayers}
           onChange={setActiveMapBGLAyer}
+        />
+        <CheckboxesGroup
+          title="Layers"
+          checkboxesList={mapLayers}
+          onChange={onChangeMapLayerStatus}
         />
         <CheckboxesGroup
           title="Markers"

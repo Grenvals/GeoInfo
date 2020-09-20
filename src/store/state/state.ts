@@ -1,11 +1,12 @@
-import { CategoryType, LatIngType, MarkerType, MapBGLayerType } from '../../types/types';
+import { CategoryType, LatIngType, MarkerType, MapLayerType } from '../../types/types';
 
 export type InitialStateType = {
   currentUserLocation: LatIngType,
   markers: Array<MarkerType>,
   categories: Array<CategoryType>,
   isMapActive: boolean,
-  mapBGLayers: Array<MapBGLayerType>,
+  mapBGLayers: Array<MapLayerType>,
+  mapLayers: Array<MapLayerType>,
 };
 
 export interface RootStateType {
@@ -184,6 +185,29 @@ export const initialState = {
       name: 'Forest map',
       url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       isActive: false,
+    },
+  ],
+  mapLayers: [
+    {
+      id: '01',
+      name: 'air polution realtime',
+      url:
+        'https://tiles.waqi.info/tiles/usepa-pm25/{z}/{x}/{y}.png?token=2bfd892052160b7462ce84641a8cc819547c7f49',
+      isActive: true,
+    },
+    {
+      id: '02',
+      name: 'rain layer',
+      url:
+        'https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=d7c6eaa896714bc9e2fd14eee64307eb',
+      isActive: true,
+    },
+    {
+      id: '03',
+      name: 'air pressure layer',
+      url:
+        'https://tile.openweathermap.org/map/pressure_new/{z}/{x}/{y}.png?appid=d7c6eaa896714bc9e2fd14eee64307eb',
+      isActive: true,
     },
   ],
 };

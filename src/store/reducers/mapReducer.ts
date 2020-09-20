@@ -2,6 +2,7 @@ import {
   ADD_MARKER,
   SET_CATEGORY_STATUS,
   SET_CURRENT_MAP_BG_LAYER,
+  SET_MAP_LAYER_STATUS,
   SET_MAP_STATUS,
 } from '../constants/constants';
 import { updateObjectInArray } from '../../utils/object-helper';
@@ -27,6 +28,14 @@ const mapReducer = (state = initialState, action: MapActionTypes): InitialStateT
       return {
         ...state,
         categories: updateObjectInArray(state.categories, action.payload.id, 'id', {
+          isActive: action.payload.isActive,
+        }),
+      };
+    }
+    case SET_MAP_LAYER_STATUS: {
+      return {
+        ...state,
+        mapLayers: updateObjectInArray(state.mapLayers, action.payload.id, 'id', {
           isActive: action.payload.isActive,
         }),
       };

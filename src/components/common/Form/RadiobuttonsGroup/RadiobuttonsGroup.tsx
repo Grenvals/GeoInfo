@@ -1,23 +1,23 @@
 import React from 'react';
 
-import { MapBGLayerType } from '../../../../types/types';
+import { MapLayerType } from '../../../../types/types';
 
 import './RadiobuttonsGroup.scss';
 
 import { Radio } from '../../Form/Radio/Radio';
 
-interface MapBGLayerOptionsType {
+interface RadiobuttonsGroupType {
   title: string;
-  radiobuttonsList: Array<MapBGLayerType>;
+  radiobuttonsList: Array<MapLayerType>;
   onChange(id: string): void;
 }
 
-const RadiobuttonsGroup = ({ title, radiobuttonsList, onChange }: MapBGLayerOptionsType) => {
+const RadiobuttonsGroup = ({ title, radiobuttonsList, onChange }: RadiobuttonsGroupType) => {
   const handleChange = (id: string) => {
     onChange(id);
   };
 
-  const radiobuttons = radiobuttonsList.map((l: MapBGLayerType) => (
+  const radiobuttons = radiobuttonsList.map((l: MapLayerType) => (
     <li className="RadiobuttonsGroup__listItem" key={l.id}>
       <Radio
         id={l.id}

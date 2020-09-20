@@ -10,6 +10,7 @@ import {
   getIsMapActive,
   getCurrentUserLocation,
   getActiveMapBGLayer,
+  getActiveMapLayers,
 } from '../../../store/selectors/selectors';
 import { useShallowEqualSelector } from '../../../hooks/useShallowEqualSelector';
 
@@ -33,7 +34,8 @@ const MapPage = React.memo(() => {
   const dispatch = useDispatch();
   const currentUserLocation = useSelector((state: RootStateType) => getCurrentUserLocation(state));
   const isMapActive = useSelector((state: RootStateType) => getIsMapActive(state));
-  const activeMapBGLayer = useSelector((state: RootStateType) => getActiveMapBGLayer(state));
+  const mapBGLayer = useSelector((state: RootStateType) => getActiveMapBGLayer(state));
+  const mapLayers = useSelector((state: RootStateType) => getActiveMapLayers(state));
   const markers = useShallowEqualSelector(getMarkers);
   const initialMapZoom: number = 10;
 
@@ -66,11 +68,12 @@ const MapPage = React.memo(() => {
 
   return (
     <div className="mapPage">
-      {initialSettings && activeMapBGLayer && (
+      {initialSettings && mapBGLayer && (
         <LeafletMap
           initialSettings={initialSettings}
           markers={markers}
-          activeMapBGLayerUrl={activeMapBGLayer.url}
+          mapBGLayer={mapBGLayer}
+          mapLayers={mapLayers}
           onAddMarker={addMapMarker}
         />
       )}

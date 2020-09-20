@@ -5,6 +5,7 @@ import {
   SET_CATEGORY_STATUS,
   SET_MAP_STATUS,
   SET_CURRENT_MAP_BG_LAYER,
+  SET_MAP_LAYER_STATUS,
 } from '../constants/constants';
 
 interface addMarkerType {
@@ -30,10 +31,19 @@ interface setMapStatusType {
     isMapActive: boolean,
   };
 }
+
 interface setCurrentMapBGLayerType {
   type: typeof SET_CURRENT_MAP_BG_LAYER;
   payload: {
     id: string,
+  };
+}
+
+interface setMapLayerStatusType {
+  type: typeof SET_MAP_LAYER_STATUS;
+  payload: {
+    id: string,
+    isActive: boolean,
   };
 }
 
@@ -61,6 +71,14 @@ export const setMapStatus = (isMapActive: boolean): setMapStatusType => ({
   },
 });
 
+export const setMapLayerStatus = (id: string, isActive: boolean): setMapLayerStatusType => ({
+  type: SET_MAP_LAYER_STATUS,
+  payload: {
+    id,
+    isActive,
+  },
+});
+
 export const setCurrentMapBGLayer = (id: string): setCurrentMapBGLayerType => ({
   type: SET_CURRENT_MAP_BG_LAYER,
   payload: {
@@ -76,4 +94,5 @@ export type MapActionTypes =
   | addMarkerType
   | setCategoryStatusType
   | setMapStatusType
-  | setCurrentMapBGLayerType;
+  | setCurrentMapBGLayerType
+  | setMapLayerStatusType;
