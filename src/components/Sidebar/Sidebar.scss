@@ -5,6 +5,8 @@
   z-index: 999;
   flex: 0 0 300px;
   margin: 0px 15px 15px 0px;
+  @include flexbox();
+  flex-direction: column;
 
   &>* {
     margin-bottom: 15px;

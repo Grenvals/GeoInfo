@@ -6,6 +6,7 @@
   overflow: hidden;
   padding: 0px;
   list-style: none;
+  flex: 0 0 auto;
 
   @media (max-width: $md2+px) {
     border-radius: 0px;

@@ -5,6 +5,9 @@
   z-index: 9999;
   background: $backgroundColor;
   max-width: 350px;
+  flex: 1;
+  height: 0px;
+  max-height: 600px;
 
   @media (max-width:$md2+px) {
     position: fixed;

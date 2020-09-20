@@ -4,9 +4,11 @@
   overflow: hidden;
   box-shadow: $shadow;
   border-radius: 10px;
+  height: 100%;
 
   &__wrap {
     overflow: auto;
+    height: calc(100% - 30px);
   }
 
   &__title {
