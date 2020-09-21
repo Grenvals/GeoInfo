@@ -176,61 +176,49 @@ export const initialState = {
     },
     {
       id: '04',
-      name: 'Forests',
-      url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-      isActive: false,
-    },
-    {
-      id: '05',
       name: 'Bisycle roads',
       url: 'https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png',
       isActive: false,
     },
     {
-      id: '06',
+      id: '05',
       name: 'Transport',
       url:
         'https://tile.thunderforest.com/transport-dark/{z}/{x}/{y}.png?apikey=d84cfed64b4c44e387554542ce28042a',
       isActive: false,
     },
     {
-      id: '07',
+      id: '06',
       name: 'Mountain hiking 3d',
       url:
         'https://tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=d84cfed64b4c44e387554542ce28042a',
       isActive: false,
     },
     {
-      id: '08',
+      id: '07',
       name: 'Railways',
       url:
         'https://tile.thunderforest.com/pioneer/{z}/{x}/{y}.png?apikey=d84cfed64b4c44e387554542ce28042a',
       isActive: false,
     },
     {
-      id: '09',
+      id: '08',
       name: 'ArcGIS Streets',
       url:
         'http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
       isActive: false,
     },
     {
-      id: '10',
+      id: '09',
       name: 'NASA Night Lights Satellite',
       url:
         'http://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default//GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpg',
       isActive: true,
     },
     {
-      id: '11',
+      id: '10',
       name: 'NY Public Library Historic map 1702',
       url: 'http://maps.nypl.org/warper/maps/tile/12602/{z}/{x}/{y}.png',
-      isActive: false,
-    },
-    {
-      id: '12',
-      name: 'NY Publifff Library Historic map 1702',
-      url: 'http://oatile{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg',
       isActive: false,
     },
   ],

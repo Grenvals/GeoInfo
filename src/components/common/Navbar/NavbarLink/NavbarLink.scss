@@ -4,10 +4,7 @@
   list-style: none;
   font-size: 14px;
   overflow: hidden;
-
-  @media (max-width: $md2+px) {
-    flex: 1;
-  }
+  flex: 1;
 
   &__img {
     position: absolute;
@@ -24,6 +21,8 @@
   }
 
   &__title {
+    // display: none;
+
     @media (max-width: $md3+px) {
       display: none;
     }

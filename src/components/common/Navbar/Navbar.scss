@@ -7,20 +7,13 @@
   padding: 0px;
   list-style: none;
   flex: 0 0 auto;
-
-  @media (max-width: $md2+px) {
-    border-radius: 0px;
-    background: $backgroundColor;
-    box-shadow: $shadow;
-  }
+  background: $backgroundColor;
+  box-shadow: $shadow;
 
   &__list {
     padding: 0px;
-
-    @media (max-width: $md2+px) {
-      @include flexbox();
-      margin-right: 0;
-      margin-left: auto;
-    }
+    @include flexbox();
+    margin-right: 0;
+    margin-left: auto;
   }
 }

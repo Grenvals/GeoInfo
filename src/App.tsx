@@ -3,7 +3,6 @@ import React from 'react';
 import { Redirect, Route, Switch, BrowserRouter } from 'react-router-dom';
 
 import { Sidebar } from './components/Sidebar/Sidebar';
-import { Header } from './components/Header/Header';
 import { MapPage } from './components/Pages/MapPage/MapPage';
 import { AuthorPage } from './components/Pages/AuthorPage/AuthorPage';
 import { AuthorizationPage } from './components/Pages/AuthorizationPage/AuthorizationPage';
@@ -16,7 +15,6 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <div className="app">
-        <Header />
         <div className="container">
           <div className="app__wrap">
             <Sidebar />

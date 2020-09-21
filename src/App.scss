@@ -19,7 +19,7 @@
     min-height: 100%;
     height: 1px;
     min-height: 100%;
-    padding: 65px 0px 15px 0px;
+    padding: 15px 0px 15px 0px;
 
     @media (max-width:$md2+px) {
       padding: 65px 0px 60px 0px;
@@ -34,7 +34,6 @@
     color: $textColor;
     font-size: 14px;
     flex: 1;
-    // border: 1px solid $additionalColor;
     border-radius: 10px;
   }
 }

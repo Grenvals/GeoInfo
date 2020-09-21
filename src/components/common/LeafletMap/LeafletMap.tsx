@@ -1,5 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Map, TileLayer, Marker, Popup, LayersControl, LayerGroup } from 'react-leaflet';
+import {
+  Map,
+  TileLayer,
+  Marker,
+  Popup,
+  LayersControl,
+  LayerGroup,
+  Polyline,
+  Tooltip,
+} from 'react-leaflet';
 
 import { Button } from '../Button/Button';
 
@@ -130,7 +139,17 @@ const LeafletMap = ({
                     <p className="markerPopup__info">longitude: {center.lng.toFixed(3)}</p>
                   </div>
                 </Popup>
+                <Tooltip permanent>
+                  <span>Geolocation</span>
+                </Tooltip>
               </Marker>
+              <Polyline
+                positions={[
+                  [0, 1000],
+                  [0, -1000],
+                ]}
+                color={'red'}
+              />
               {markersList}
             </LayerGroup>
           </Overlay>
