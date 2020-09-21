@@ -94,7 +94,7 @@ export const initialState = {
     {
       id: '9',
       name: 'Central park',
-      category: 'another',
+      category: 'pharmacies',
       latlng: {
         lat: 50.241864,
         lng: 30.205664,
@@ -147,10 +147,10 @@ export const initialState = {
     },
   ],
   categories: [
-    { id: '1', name: 'restaurants', isActive: true },
-    { id: '2', name: 'pharmacies', isActive: true },
-    { id: '3', name: 'gas stations', isActive: true },
-    { id: '4', name: 'schools', isActive: true },
+    { id: '1', name: 'restaurants', isActive: false },
+    { id: '2', name: 'pharmacies', isActive: false },
+    { id: '3', name: 'gas stations', isActive: false },
+    { id: '4', name: 'schools', isActive: false },
     { id: '5', name: 'another', isActive: true },
   ],
   isMapActive: false,
@@ -159,7 +159,7 @@ export const initialState = {
       id: '01',
       name: 'Topographic outdoor',
       url: 'https://api.maptiler.com/maps/outdoor/{z}/{x}/{y}.png/?key=Z38k7XaAQZ2rMxzRHYsZ',
-      isActive: true,
+      isActive: false,
     },
     {
       id: '02',
@@ -207,6 +207,32 @@ export const initialState = {
         'https://tile.thunderforest.com/pioneer/{z}/{x}/{y}.png?apikey=d84cfed64b4c44e387554542ce28042a',
       isActive: false,
     },
+    {
+      id: '09',
+      name: 'ArcGIS Streets',
+      url:
+        'http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
+      isActive: false,
+    },
+    {
+      id: '10',
+      name: 'NASA Night Lights Satellite',
+      url:
+        'http://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default//GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpg',
+      isActive: true,
+    },
+    {
+      id: '11',
+      name: 'NY Public Library Historic map 1702',
+      url: 'http://maps.nypl.org/warper/maps/tile/12602/{z}/{x}/{y}.png',
+      isActive: false,
+    },
+    {
+      id: '12',
+      name: 'NY Publifff Library Historic map 1702',
+      url: 'http://oatile{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg',
+      isActive: false,
+    },
   ],
   mapLayers: [
     {
@@ -221,7 +247,7 @@ export const initialState = {
       name: 'rain layer',
       url:
         'https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=d7c6eaa896714bc9e2fd14eee64307eb',
-      isActive: false,
+      isActive: true,
     },
     {
       id: '03',

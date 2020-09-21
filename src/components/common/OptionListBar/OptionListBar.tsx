@@ -40,7 +40,7 @@ const OptionListBar = React.memo(() => {
       <div className="OptionListBar__wrap">
         <Scrollbars autoHeightMin={`100%`} autoHide autoHideTimeout={1000} autoHideDuration={400}>
           <RadiobuttonsGroup
-            title="Type"
+            title="Map"
             radiobuttonsList={mapBGLayers}
             onChange={setActiveMapBGLAyer}
           />

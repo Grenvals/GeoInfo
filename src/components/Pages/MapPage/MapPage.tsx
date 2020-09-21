@@ -37,7 +37,7 @@ const MapPage = React.memo(() => {
   const mapBGLayer = useSelector((state: RootStateType) => getActiveMapBGLayer(state));
   const mapLayers = useSelector((state: RootStateType) => getActiveMapLayers(state));
   const markers = useShallowEqualSelector(getMarkers);
-  const initialMapZoom: number = 10;
+  const initialMapZoom: number = 4;
 
   const [initialSettings, setStartPosition] = useState({
     ...currentUserLocation,
