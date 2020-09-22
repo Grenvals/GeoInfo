@@ -7,6 +7,10 @@
   height: 100%;
   overflow: hidden;
 
+  @media (max-width:$md2+px) {
+    border-radius: 0px;
+  }
+
   &__wrap {
     position: absolute;
     top: 30px;
