@@ -1,11 +1,12 @@
 import { LatIngType } from '../../types/types';
 import {
   ADD_MARKER,
-  GET_LOAD_DATA,
+  GET_ISS_COORDINATES,
   SET_CATEGORY_STATUS,
   SET_MAP_STATUS,
   SET_CURRENT_MAP_BG_LAYER,
   SET_MAP_LAYER_STATUS,
+  SET_ISS_COORDINATES,
 } from '../constants/constants';
 
 interface addMarkerType {
@@ -47,6 +48,18 @@ interface setMapLayerStatusType {
   };
 }
 
+interface setISSCoordinatesType {
+  type: typeof SET_ISS_COORDINATES;
+  payload: {
+    height: number,
+    latIng: LatIngType,
+  };
+}
+
+type getISSCoordinatesType = {
+  type: typeof GET_ISS_COORDINATES,
+};
+
 export const addMarker = (name: string, category: string, latlng: LatIngType): addMarkerType => ({
   type: ADD_MARKER,
   payload: {
@@ -86,8 +99,16 @@ export const setCurrentMapBGLayer = (id: string): setCurrentMapBGLayerType => ({
   },
 });
 
-export const getData = () => ({
-  type: GET_LOAD_DATA,
+export const setISSCoordinates = (height: number, latIng: LatIngType): setISSCoordinatesType => ({
+  type: SET_ISS_COORDINATES,
+  payload: {
+    height,
+    latIng,
+  },
+});
+
+export const getISSCoordinates = (): getISSCoordinatesType => ({
+  type: GET_ISS_COORDINATES,
 });
 
 export type MapActionTypes =
@@ -95,4 +116,5 @@ export type MapActionTypes =
   | setCategoryStatusType
   | setMapStatusType
   | setCurrentMapBGLayerType
-  | setMapLayerStatusType;
+  | setMapLayerStatusType
+  | setISSCoordinatesType;

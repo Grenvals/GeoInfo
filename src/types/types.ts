@@ -22,3 +22,19 @@ export type MapLayerType = {
   url: string,
   isActive: boolean,
 };
+
+export type SatelliteType = {
+  id: string,
+  name: string,
+  category: string,
+  latlng: LatIngType,
+};
+
+export type InternationalSpaceStationType = {
+  name: string,
+  latlng?: LatIngType | undefined,
+  height?: number | undefined,
+  trajectory: Array<LatIngType>,
+  isTrajectoryActive: boolean,
+  isActive: boolean,
+};

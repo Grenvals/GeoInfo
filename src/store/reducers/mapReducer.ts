@@ -2,6 +2,7 @@ import {
   ADD_MARKER,
   SET_CATEGORY_STATUS,
   SET_CURRENT_MAP_BG_LAYER,
+  SET_ISS_COORDINATES,
   SET_MAP_LAYER_STATUS,
   SET_MAP_STATUS,
 } from '../constants/constants';
@@ -44,6 +45,17 @@ const mapReducer = (state = initialState, action: MapActionTypes): InitialStateT
       return {
         ...state,
         isMapActive: action.payload.isMapActive,
+      };
+    }
+    case SET_ISS_COORDINATES: {
+      return {
+        ...state,
+        internationalSpaceStation: {
+          ...state.internationalSpaceStation,
+          height: action.payload.height,
+          latlng: action.payload.latIng,
+          trajectory: [...state.internationalSpaceStation.trajectory, action.payload.latIng],
+        },
       };
     }
     case SET_CURRENT_MAP_BG_LAYER: {

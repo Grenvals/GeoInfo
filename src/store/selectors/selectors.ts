@@ -1,4 +1,10 @@
-import { CategoryType, LatIngType, MapLayerType, MarkerType } from '../../types/types';
+import {
+  CategoryType,
+  InternationalSpaceStationType,
+  LatIngType,
+  MapLayerType,
+  MarkerType,
+} from '../../types/types';
 import { RootStateType } from '../state/state';
 
 export const getMarkers = (state: RootStateType): Array<MarkerType> => {
@@ -36,4 +42,10 @@ export const getMapBGLayers = (state: RootStateType): Array<MapLayerType> => {
 
 export const getActiveMapBGLayer = (state: RootStateType): MapLayerType => {
   return state.map.mapBGLayers.filter((l) => l.isActive === true)[0];
+};
+
+export const getInternationalSpaceStation = (
+  state: RootStateType
+): InternationalSpaceStationType => {
+  return state.map.internationalSpaceStation;
 };

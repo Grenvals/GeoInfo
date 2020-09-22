@@ -4,13 +4,14 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { useCurrentLocation } from '../../../hooks/useCurrentLocation';
 import { LeafletMap } from '../../common/LeafletMap/LeafletMap';
-import { addMarker, getData, setMapStatus } from '../../../store/actions/actions';
+import { addMarker, getISSCoordinates, setMapStatus } from '../../../store/actions/actions';
 import {
   getMarkers,
   getIsMapActive,
   getCurrentUserLocation,
   getActiveMapBGLayer,
   getActiveMapLayers,
+  getInternationalSpaceStation,
 } from '../../../store/selectors/selectors';
 import { useShallowEqualSelector } from '../../../hooks/useShallowEqualSelector';
 
@@ -36,8 +37,11 @@ const MapPage = React.memo(() => {
   const isMapActive = useSelector((state: RootStateType) => getIsMapActive(state));
   const mapBGLayer = useSelector((state: RootStateType) => getActiveMapBGLayer(state));
   const mapLayers = useSelector((state: RootStateType) => getActiveMapLayers(state));
+  const internationalSpaceStation = useSelector((state: RootStateType) =>
+    getInternationalSpaceStation(state)
+  );
   const markers = useShallowEqualSelector(getMarkers);
-  const initialMapZoom: number = 4;
+  const initialMapZoom: number = 3;
 
   const [initialSettings, setStartPosition] = useState({
     ...currentUserLocation,
@@ -48,7 +52,6 @@ const MapPage = React.memo(() => {
 
   const addMapMarker = useCallback((name: string, category: string, latlng: LatIngType): void => {
     dispatch(addMarker(name, category, latlng));
-    dispatch(getData());
   }, []);
 
   const setActiveMapStatus = useCallback((isMapActive: boolean): void => {
@@ -59,6 +62,12 @@ const MapPage = React.memo(() => {
     setActiveMapStatus(true);
     return () => setActiveMapStatus(false);
   }, [isMapActive]);
+
+  useEffect(() => {
+    setInterval(() => {
+      dispatch(getISSCoordinates());
+    }, 1000);
+  }, []);
 
   useEffect(() => {
     if (currentLocation) {
@@ -75,6 +84,7 @@ const MapPage = React.memo(() => {
           mapBGLayer={mapBGLayer}
           mapLayers={mapLayers}
           onAddMarker={addMapMarker}
+          internationalSpaceStation={internationalSpaceStation}
         />
       )}
     </div>

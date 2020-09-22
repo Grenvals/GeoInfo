@@ -7,7 +7,7 @@ import {
   LayersControl,
   LayerGroup,
   Polyline,
-  Tooltip,
+  Circle,
 } from 'react-leaflet';
 
 import { Button } from '../Button/Button';
@@ -16,13 +16,20 @@ import {
   greenMarker,
   redMarker,
   currentLocationMarker,
+  internationalSpaceStationMarker,
 } from '../../../store/constants/leafletMarkers';
 
 import currentLocationIcon from '../../../assets/img/markers/home-marker.svg';
+import ISSLocationIcon from '../../../assets/img/markers/iss-spacestation.svg';
 
 import './LeafletMap.scss';
 
-import { MarkerType, LatIngType, MapLayerType } from '../../../types/types';
+import {
+  MarkerType,
+  LatIngType,
+  MapLayerType,
+  InternationalSpaceStationType,
+} from '../../../types/types';
 
 type InitialSettingsType = {
   lat: number,
@@ -36,6 +43,7 @@ interface LeafletMapPropsType {
   mapBGLayer: MapLayerType;
   mapLayers: Array<MapLayerType>;
   onAddMarker(name: string, category: string, latlng: LatIngType): void;
+  internationalSpaceStation: InternationalSpaceStationType;
 }
 
 const LeafletMap = ({
@@ -44,6 +52,7 @@ const LeafletMap = ({
   mapBGLayer,
   mapLayers,
   onAddMarker,
+  internationalSpaceStation,
 }: LeafletMapPropsType) => {
   const { Overlay } = LayersControl;
 
@@ -139,17 +148,37 @@ const LeafletMap = ({
                     <p className="markerPopup__info">longitude: {center.lng.toFixed(3)}</p>
                   </div>
                 </Popup>
-                <Tooltip permanent>
-                  <span>Geolocation</span>
-                </Tooltip>
               </Marker>
-              <Polyline
-                positions={[
-                  [0, 1000],
-                  [0, -1000],
-                ]}
-                color={'red'}
-              />
+              {internationalSpaceStation.latlng && internationalSpaceStation.height && (
+                <Marker
+                  position={internationalSpaceStation.latlng}
+                  icon={internationalSpaceStationMarker}>
+                  <Popup>
+                    <div className="markerPopup">
+                      <img className="markerPopup__img" src={ISSLocationIcon} alt="icon" />
+                      <h3 className="markerPopup__name">{internationalSpaceStation.name}</h3>
+                      <p className="markerPopup__info">
+                        Height: {`${internationalSpaceStation.height} km`}
+                      </p>
+                      <p className="markerPopup__info">
+                        latitude: {internationalSpaceStation.latlng.lat.toFixed(3)}
+                      </p>
+                      <p className="markerPopup__info">
+                        longitude: {internationalSpaceStation.latlng.lng.toFixed(3)}
+                      </p>
+                    </div>
+                  </Popup>
+                  <Circle
+                    center={internationalSpaceStation.latlng}
+                    radius={1400000}
+                    fillOpacity={0.2}
+                    // fillColor="grey"
+                    stroke={true}
+                  />
+                </Marker>
+              )}
+
+              <Polyline positions={internationalSpaceStation.trajectory} color={'red'} />
               {markersList}
             </LayerGroup>
           </Overlay>

@@ -1,4 +1,10 @@
-import { CategoryType, LatIngType, MarkerType, MapLayerType } from '../../types/types';
+import {
+  CategoryType,
+  LatIngType,
+  MarkerType,
+  MapLayerType,
+  InternationalSpaceStationType,
+} from '../../types/types';
 
 export type InitialStateType = {
   currentUserLocation: LatIngType,
@@ -7,6 +13,7 @@ export type InitialStateType = {
   isMapActive: boolean,
   mapBGLayers: Array<MapLayerType>,
   mapLayers: Array<MapLayerType>,
+  internationalSpaceStation: InternationalSpaceStationType,
 };
 
 export interface RootStateType {
@@ -146,6 +153,12 @@ export const initialState = {
       },
     },
   ],
+  internationalSpaceStation: {
+    name: 'International space station',
+    trajectory: [],
+    isTrajectoryActive: true,
+    isActive: true,
+  },
   categories: [
     { id: '1', name: 'restaurants', isActive: false },
     { id: '2', name: 'pharmacies', isActive: false },
@@ -228,7 +241,7 @@ export const initialState = {
       name: 'air polution realtime',
       url:
         'https://tiles.waqi.info/tiles/usepa-pm25/{z}/{x}/{y}.png?token=2bfd892052160b7462ce84641a8cc819547c7f49',
-      isActive: true,
+      isActive: false,
     },
     {
       id: '02',
