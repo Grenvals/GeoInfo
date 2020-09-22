@@ -15,7 +15,7 @@ const AuthorizationPage: React.FC = () => {
     <div className="authorization">
       <img className="authorization__bg" src={backgroundImg} alt="bg" />
       <div className="authorization__content">
-        <h1 className="authorization__title">Login</h1>
+        <h1 className="authorization__title">Sign in</h1>
         <LoginForm onSubmit={handleSubmit} />
       </div>
     </div>

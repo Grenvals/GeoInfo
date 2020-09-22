@@ -29,9 +29,10 @@
     max-width: 300px;
     font-size: 14px;
     padding: 15px;
-    background: $additionalColor;
+    background: rgba($additionalColor, 0.6);
     border-radius: 15px;
     min-width: 350px;
+    opacity: 0.9;
 
     @media (max-width:$md4+px) {
       min-width: 270px;
@@ -58,6 +59,7 @@
     padding-left: 10px;
     margin-bottom: 5px;
     color: $backgroundColor;
+    font-weight: 600;
   }
 
   &__input {
@@ -80,8 +82,9 @@
 
   &__error {
     display: inline-block;
-    font-size: 13px;
+    font-size: 14px;
     color: $textError;
     margin-right: 15px;
+    font-weight: 600;
   }
 }
