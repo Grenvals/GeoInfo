@@ -4,7 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { useCurrentLocation } from '../../../hooks/useCurrentLocation';
 import { LeafletMap } from '../../common/LeafletMap/LeafletMap';
-import { addMarker, getISSCoordinates, setMapStatus } from '../../../store/actions/actions';
+import {
+  addMarker,
+  getISSCoordinates,
+  getStarlinkSatelites,
+  setMapStatus,
+} from '../../../store/actions/actions';
 import {
   getMarkers,
   getIsMapActive,
@@ -12,6 +17,7 @@ import {
   getActiveMapBGLayer,
   getActiveMapLayers,
   getInternationalSpaceStation,
+  getSatelites,
 } from '../../../store/selectors/selectors';
 import { useShallowEqualSelector } from '../../../hooks/useShallowEqualSelector';
 
@@ -40,6 +46,7 @@ const MapPage = React.memo(() => {
   const internationalSpaceStation = useSelector((state: RootStateType) =>
     getInternationalSpaceStation(state)
   );
+  const satelitesList = useSelector((state: RootStateType) => getSatelites(state));
   const markers = useShallowEqualSelector(getMarkers);
   const initialMapZoom: number = 3;
 
@@ -65,8 +72,19 @@ const MapPage = React.memo(() => {
 
   useEffect(() => {
     setInterval(() => {
-      dispatch(getISSCoordinates());
+      if (internationalSpaceStation.isActive) {
+        dispatch(getISSCoordinates());
+      }
     }, 1000);
+  }, [internationalSpaceStation.isActive]);
+
+  useEffect(() => {
+    setInterval(() => {
+      if (internationalSpaceStation.isActive) {
+        dispatch(getStarlinkSatelites());
+      }
+    }, 60000);
+    dispatch(getStarlinkSatelites());
   }, []);
 
   useEffect(() => {
@@ -85,6 +103,7 @@ const MapPage = React.memo(() => {
           mapLayers={mapLayers}
           onAddMarker={addMapMarker}
           internationalSpaceStation={internationalSpaceStation}
+          satelitesList={satelitesList}
         />
       )}
     </div>

@@ -1,16 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { setISSCoordinates } from '../actions/actions';
-import { GET_ISS_COORDINATES } from '../constants/constants';
-
-// function fetchData() {
-//   return fetch(
-//     'https://www.n2yo.com/rest/v1/satellite/above/41.702/-76.014/0/70/18/&apiKey=ZWZGPL-V74C37-LGKJZW-4K2T',
-//     {}
-//   ).then((response) => response.json());
-// }
-
-// http://api.open-notify.org/astros.json /astronawts
-// http://api.open-notify.org/iss-now.json
+import { setISSCoordinates, setSatelites } from '../actions/actions';
+import { GET_ISS_COORDINATES, GET_STARLINK_SATELITES } from '../constants/constants';
 
 function getISScoordinates() {
   return fetch(
@@ -19,7 +9,11 @@ function getISScoordinates() {
   ).then((response) => response.json());
 }
 
-function* workerLoadData() {
+function getStarlinkSatelites() {
+  return fetch('https://api.spacexdata.com/v4/starlink', {}).then((response) => response.json());
+}
+
+function* loadISScoordinates() {
   try {
     const ISScoordinates = yield call(getISScoordinates);
     const LatIng = {
@@ -32,6 +26,32 @@ function* workerLoadData() {
   }
 }
 
+function* loadStarlinkSatelites() {
+  try {
+    const starlinkSatelites = yield call(getStarlinkSatelites);
+    const satelitesList = starlinkSatelites.map((s: any, i: number): any => {
+      const newId = `markersf${(+new Date()).toString(16)}_satelite_${i}`;
+      return {
+        id: newId,
+        name: s.spaceTrack.OBJECT_NAME,
+        version: s.version,
+        launch: s.spaceTrack.LAUNCH_DATE,
+        orbit: s.spaceTrack.MEAN_ELEMENT_THEORY,
+        velocity: s.velocity_kms,
+        height: s.height_km,
+        latlng: {
+          lat: s.latitude,
+          lng: s.longitude,
+        },
+      };
+    });
+    yield put(setSatelites(satelitesList));
+  } catch (err) {
+    console.log('err', err);
+  }
+}
+
 export function* watchLoadData(): any {
-  yield takeEvery(GET_ISS_COORDINATES, workerLoadData);
+  yield takeEvery(GET_ISS_COORDINATES, loadISScoordinates);
+  yield takeEvery(GET_STARLINK_SATELITES, loadStarlinkSatelites);
 }

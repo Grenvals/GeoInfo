@@ -1,4 +1,4 @@
-import { LatIngType } from '../../types/types';
+import { LatIngType, SatelliteType } from '../../types/types';
 import {
   ADD_MARKER,
   GET_ISS_COORDINATES,
@@ -7,6 +7,8 @@ import {
   SET_CURRENT_MAP_BG_LAYER,
   SET_MAP_LAYER_STATUS,
   SET_ISS_COORDINATES,
+  GET_STARLINK_SATELITES,
+  SET_SATELITES,
 } from '../constants/constants';
 
 interface addMarkerType {
@@ -56,8 +58,19 @@ interface setISSCoordinatesType {
   };
 }
 
+interface setSatelitesType {
+  type: typeof SET_SATELITES;
+  payload: {
+    satelitesList: Array<SatelliteType>,
+  };
+}
+
 type getISSCoordinatesType = {
   type: typeof GET_ISS_COORDINATES,
+};
+
+type getStarlinkSatelitesType = {
+  type: typeof GET_STARLINK_SATELITES,
 };
 
 export const addMarker = (name: string, category: string, latlng: LatIngType): addMarkerType => ({
@@ -107,8 +120,19 @@ export const setISSCoordinates = (height: number, latIng: LatIngType): setISSCoo
   },
 });
 
+export const setSatelites = (satelitesList: Array<SatelliteType>): setSatelitesType => ({
+  type: SET_SATELITES,
+  payload: {
+    satelitesList,
+  },
+});
+
 export const getISSCoordinates = (): getISSCoordinatesType => ({
   type: GET_ISS_COORDINATES,
+});
+
+export const getStarlinkSatelites = (): getStarlinkSatelitesType => ({
+  type: GET_STARLINK_SATELITES,
 });
 
 export type MapActionTypes =
@@ -117,4 +141,5 @@ export type MapActionTypes =
   | setMapStatusType
   | setCurrentMapBGLayerType
   | setMapLayerStatusType
-  | setISSCoordinatesType;
+  | setISSCoordinatesType
+  | setSatelitesType;

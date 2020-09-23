@@ -4,6 +4,7 @@ import {
   LatIngType,
   MapLayerType,
   MarkerType,
+  SatellitesType,
 } from '../../types/types';
 import { RootStateType } from '../state/state';
 
@@ -48,4 +49,8 @@ export const getInternationalSpaceStation = (
   state: RootStateType
 ): InternationalSpaceStationType => {
   return state.map.internationalSpaceStation;
+};
+
+export const getSatelites = (state: RootStateType): SatellitesType => {
+  return state.map.satelites;
 };

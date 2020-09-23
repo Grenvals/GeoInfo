@@ -26,8 +26,18 @@ export type MapLayerType = {
 export type SatelliteType = {
   id: string,
   name: string,
-  category: string,
+  version: string,
+  height: number,
+  launch: string,
+  orbit: string,
+  velocity: number,
   latlng: LatIngType,
+};
+
+export type SatellitesType = {
+  isActive: boolean,
+  isCoverActive: boolean,
+  satelitesList: Array<SatelliteType>,
 };
 
 export type InternationalSpaceStationType = {

@@ -4,6 +4,7 @@ import {
   MarkerType,
   MapLayerType,
   InternationalSpaceStationType,
+  SatellitesType,
 } from '../../types/types';
 
 export type InitialStateType = {
@@ -14,6 +15,7 @@ export type InitialStateType = {
   mapBGLayers: Array<MapLayerType>,
   mapLayers: Array<MapLayerType>,
   internationalSpaceStation: InternationalSpaceStationType,
+  satelites: SatellitesType,
 };
 
 export interface RootStateType {
@@ -158,6 +160,11 @@ export const initialState = {
     trajectory: [],
     isTrajectoryActive: true,
     isActive: true,
+  },
+  satelites: {
+    isActive: true,
+    isCoverActive: true,
+    satelitesList: [],
   },
   categories: [
     { id: '1', name: 'restaurants', isActive: false },
