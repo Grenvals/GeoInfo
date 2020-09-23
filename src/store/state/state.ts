@@ -255,7 +255,7 @@ export const initialState = {
       name: 'rain layer',
       url:
         'https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=d7c6eaa896714bc9e2fd14eee64307eb',
-      isActive: true,
+      isActive: false,
     },
     {
       id: '03',

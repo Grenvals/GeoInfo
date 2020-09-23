@@ -48,13 +48,12 @@ const MapPage = React.memo(() => {
   );
   const satelitesList = useSelector((state: RootStateType) => getSatelites(state));
   const markers = useShallowEqualSelector(getMarkers);
-  const initialMapZoom: number = 3;
+  const initialMapZoom: number = 5;
 
   const [initialSettings, setStartPosition] = useState({
     ...currentUserLocation,
     zoom: initialMapZoom,
   });
-
   const { location: currentLocation } = useCurrentLocation(geolocationOptions);
 
   const addMapMarker = useCallback((name: string, category: string, latlng: LatIngType): void => {
@@ -75,7 +74,7 @@ const MapPage = React.memo(() => {
       if (internationalSpaceStation.isActive) {
         dispatch(getISSCoordinates());
       }
-    }, 1000);
+    }, 10000);
   }, [internationalSpaceStation.isActive]);
 
   useEffect(() => {

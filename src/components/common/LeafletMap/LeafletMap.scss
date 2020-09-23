@@ -92,11 +92,16 @@
 
     .leaflet-popup-content-wrapper {
       border-radius: 13px;
-      padding: 5px 15px;
+      padding: 0px;
+    }
+
+    .leaflet-popup-content {
+      margin: 0px;
     }
 
     .leaflet-popup-content p {
-      margin: 15px 0;
+      margin: 0px;
+      padding: 0px;
     }
 
     .leaflet-popup {
@@ -115,6 +120,10 @@
 }
 
 .markerPopup {
+  padding: 15px;
+  border-radius: 15px;
+  overflow: hidden;
+
   &__name {
     font-size: 13px;
     font-weight: 500;

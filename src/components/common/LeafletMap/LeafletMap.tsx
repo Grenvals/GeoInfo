@@ -33,6 +33,7 @@ import {
   InternationalSpaceStationType,
   SatellitesType,
 } from '../../../types/types';
+import { SatelitePopup } from '../Popup/SatelitePopup/SatelitePopup';
 
 type InitialSettingsType = {
   lat: number,
@@ -133,30 +134,21 @@ const LeafletMap = React.memo(
     const clearUnsaveMarkers = () => {
       setUnsaveMarkers([]);
     };
-    console.log(satelitesList);
 
     const satelites = satelitesList.satelitesList.map((s): any => (
       <Marker position={s.latlng} icon={sateliteMarker} key={s.id}>
-        <Popup>
-          <div className="markerPopup">
-            <img className="markerPopup__img" src={starlinkSateliteIcon} alt="icon" />
-            <h3 className="markerPopup__name">{s.name}</h3>
-            <p className="markerPopup__info">Version: {s.version}</p>
-            <p className="markerPopup__info">Launch: {s.launch}</p>
-            <p className="markerPopup__info">Orbit: {s.orbit}</p>
-            <p className="markerPopup__info">Velocity: {`${s.velocity} km/s`}</p>
-            <p className="markerPopup__info">Height: {`${s.height} km`}</p>
-            <p className="markerPopup__info">latitude: {s.latlng.lat}</p>
-            <p className="markerPopup__info">longitude: {s.latlng.lng}</p>
-          </div>
-        </Popup>
-        <Circle
-          center={s.latlng}
-          radius={400000}
-          fillOpacity={0.2}
-          // fillColor="red"
-          stroke={false}
-        />
+        <Circle center={s.latlng} radius={400000} fillOpacity={0.2} stroke={false}>
+          <SatelitePopup
+            name={s.name}
+            version={s.version}
+            launch={s.launch}
+            orbit={s.orbit}
+            velocity={s.velocity}
+            height={s.height}
+            latlng={s.latlng}
+            image={starlinkSateliteIcon}
+          />
+        </Circle>
       </Marker>
     ));
 
@@ -175,7 +167,7 @@ const LeafletMap = React.memo(
             />
             {mapLayersList}
             <Overlay name="Saved Markers" checked={true}>
-              <LayerGroup id="lg1">
+              <LayerGroup>
                 <Marker position={center} icon={currentLocationMarker}>
                   <Popup>
                     <div className="markerPopup">
@@ -214,14 +206,13 @@ const LeafletMap = React.memo(
                     />
                   </Marker>
                 )}
-
                 <Polyline positions={internationalSpaceStation.trajectory} color={'red'} />
                 {markersList}
                 {satelites.length > 0 && satelites}
               </LayerGroup>
             </Overlay>
             <Overlay name="Unsave markers" checked={true}>
-              <LayerGroup id="lg1">{unsaveMarkersList}</LayerGroup>
+              <LayerGroup>{unsaveMarkersList}</LayerGroup>
             </Overlay>
           </LayersControl>
         </Map>
