@@ -91,12 +91,14 @@
     }
 
     .leaflet-popup-content-wrapper {
-      border-radius: 13px;
+      // border-radius: 13px;
       padding: 0px;
+      margin: 0px;
     }
 
     .leaflet-popup-content {
       margin: 0px;
+      padding: 0px;
     }
 
     .leaflet-popup-content p {
@@ -116,21 +118,5 @@
 
   .leaflet-popup-tip-container {
     display: none;
-  }
-}
-
-.markerPopup {
-  padding: 15px;
-  border-radius: 15px;
-  overflow: hidden;
-
-  &__name {
-    font-size: 13px;
-    font-weight: 500;
-  }
-
-  &__info {
-    line-height: 1.6;
-    margin: 0px;
   }
 }

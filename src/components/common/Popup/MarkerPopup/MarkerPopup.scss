@@ -1,11 +1,12 @@
 @import "../../../../scss/main.scss";
 
-.satelitePopup {
+.markerPopup {
+  margin: 0px;
   position: relative;
   padding: 15px;
-  padding-top: 170px;
+  padding-top: 180px;
   border-radius: 15px;
-  width: 260px;
+  width: 250px;
 
   &:before {
     content: '';
@@ -26,13 +27,25 @@
     position: absolute;
     top: 25px;
     left: 0px;
-    right: 0px;
+    right: -2px;
     height: 140px;
 
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    &_contain {
+      img {
+        object-fit: contain;
+      }
+    }
+  }
+
+  &__content {
+    &>* {
+      margin-bottom: 5px !important;
     }
   }
 
