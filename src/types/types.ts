@@ -36,7 +36,7 @@ export type SatelliteType = {
 
 export type SatellitesType = {
   isActive: boolean,
-  isCoverActive: boolean,
+  isCoverageActive: boolean,
   satelitesList: Array<SatelliteType>,
 };
 

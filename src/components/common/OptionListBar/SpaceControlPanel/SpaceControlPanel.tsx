@@ -6,13 +6,20 @@ import {
   setISSStatus,
   setISSTrajectoryStatus,
   setISSVisibilityAreaStatus,
+  setSatelitesCoverageStatus,
+  setSatelitesVisibleStatus,
 } from '../../../../store/actions/actions';
-import { getInternationalSpaceStation } from '../../../../store/selectors/selectors';
+import {
+  getInternationalSpaceStation,
+  getSatelites,
+  getSatelitesCount,
+} from '../../../../store/selectors/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootStateType } from '../../../../store/state/state';
 import { Checkbox } from '../../Form/Checkbox/Checkbox';
 
 import ISSlogo from '../../../../assets/img/options/ISS_logo.png';
+import Starlinklogo from '../../../../assets/img/options/starlink-spacex.png';
 
 const SpaceControlPanel = () => {
   const dispatch = useDispatch();
@@ -20,6 +27,9 @@ const SpaceControlPanel = () => {
   const internationalSpaceStation = useSelector((state: RootStateType) =>
     getInternationalSpaceStation(state)
   );
+
+  const satelites = useSelector((state: RootStateType) => getSatelites(state));
+  const satelitesCount = useSelector((state: RootStateType) => getSatelitesCount(state));
 
   const onChangeISSStatus = useCallback((): void => {
     dispatch(setISSStatus(internationalSpaceStation.isActive ? false : true));
@@ -35,9 +45,42 @@ const SpaceControlPanel = () => {
     );
   }, [internationalSpaceStation.isVisibilityAreaActive]);
 
+  const onChangeSatelitesVisibleStatus = useCallback((): void => {
+    dispatch(setSatelitesVisibleStatus(satelites.isActive ? false : true));
+  }, [satelites.isActive]);
+
+  const onChangeSatelitesCoverageStatus = useCallback((): void => {
+    dispatch(setSatelitesCoverageStatus(satelites.isCoverageActive ? false : true));
+  }, [satelites.isCoverageActive]);
+
   return (
     <div className="spaceControlPanel">
-      <h3 className="spaceControlPanel__subtitle">SPACE</h3>
+      <h3 className="spaceControlPanel__subtitle">Starlink</h3>
+      <div className="spaceControlPanel__img">
+        <img src={Starlinklogo} alt="Starlink" />
+      </div>
+      <p className="spaceControlPanel__counter">
+        Satelites on orbit:
+        <span>{satelitesCount > 0 ? satelitesCount : '-'} </span>
+      </p>
+      <ul className="spaceControlPanel__list">
+        <li className="spaceControlPanel__listItem">
+          <Checkbox
+            id={'01_ISS'}
+            label={'Starlink satelites'}
+            checked={satelites.isActive}
+            onChange={onChangeSatelitesVisibleStatus}
+          />
+          <Checkbox
+            id={'02_ISS'}
+            label={'Starlink satelites coverage'}
+            checked={internationalSpaceStation.isTrajectoryActive}
+            onChange={onChangeSatelitesCoverageStatus}
+          />
+        </li>
+      </ul>
+
+      <h3 className="spaceControlPanel__subtitle">International space station</h3>
       <div className="spaceControlPanel__img">
         <img src={ISSlogo} alt="ISS" />
       </div>

@@ -54,3 +54,7 @@ export const getInternationalSpaceStation = (
 export const getSatelites = (state: RootStateType): SatellitesType => {
   return state.map.satelites;
 };
+
+export const getSatelitesCount = (state: RootStateType): number => {
+  return state.map.satelites.satelitesList.length - 1;
+};

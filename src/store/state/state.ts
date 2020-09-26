@@ -168,7 +168,7 @@ export const initialState = {
   },
   satelites: {
     isActive: true,
-    isCoverActive: true,
+    isCoverageActive: true,
     satelitesList: [],
   },
   categories: [

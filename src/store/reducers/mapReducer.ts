@@ -1,6 +1,8 @@
 import {
   SET_ISS_TRAJECTORY_STATUS,
   SET_ISS_VISIBILITY_AREA_STATUS,
+  SET_SATELITES_COVERAGE_STATUS,
+  SET_SATELITES_VISIBLE_STATUS,
 } from './../constants/constants';
 import {
   ADD_MARKER,
@@ -55,7 +57,7 @@ const mapReducer = (state = initialState, action: MapActionTypes): InitialStateT
     }
     case SET_ISS_COORDINATES: {
       const trajectory =
-        action.payload.latIng.lng < 175 // auto clear last path
+        action.payload.latIng.lng < 179 // auto clear last path
           ? [...state.internationalSpaceStation.trajectory, action.payload.latIng]
           : [action.payload.latIng];
       return {
@@ -101,6 +103,24 @@ const mapReducer = (state = initialState, action: MapActionTypes): InitialStateT
         satelites: {
           ...state.satelites,
           satelitesList: action.payload.satelitesList,
+        },
+      };
+    }
+    case SET_SATELITES_VISIBLE_STATUS: {
+      return {
+        ...state,
+        satelites: {
+          ...state.satelites,
+          isActive: action.payload.isActive,
+        },
+      };
+    }
+    case SET_SATELITES_COVERAGE_STATUS: {
+      return {
+        ...state,
+        satelites: {
+          ...state.satelites,
+          isCoverageActive: action.payload.isActive,
         },
       };
     }

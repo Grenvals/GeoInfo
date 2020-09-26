@@ -128,7 +128,7 @@ const LeafletMap = React.memo(
         onMouseOver={(e: any) => {
           e.target.openPopup();
         }}>
-        {satelites.isCoverActive && (
+        {satelites.isCoverageActive && (
           <Circle center={s.latlng} radius={400000} fillOpacity={0.2} stroke={false}>
             <MarkerPopup
               name={s.name}
