@@ -45,6 +45,7 @@ export type InternationalSpaceStationType = {
   latlng?: LatIngType | undefined,
   height?: number | undefined,
   trajectory: Array<LatIngType>,
-  isTrajectoryActive: boolean,
   isActive: boolean,
+  isVisibilityAreaActive: boolean,
+  isTrajectoryActive: boolean,
 };

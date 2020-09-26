@@ -6,6 +6,7 @@ import {
   SET_MAP_LAYER_STATUS,
   SET_MAP_STATUS,
   SET_SATELITES,
+  SET_ISS_STATUS,
 } from '../constants/constants';
 import { updateObjectInArray } from '../../utils/object-helper';
 import { initialState, InitialStateType } from '../state/state';
@@ -56,6 +57,15 @@ const mapReducer = (state = initialState, action: MapActionTypes): InitialStateT
           height: action.payload.height,
           latlng: action.payload.latIng,
           trajectory: [...state.internationalSpaceStation.trajectory, action.payload.latIng],
+        },
+      };
+    }
+    case SET_ISS_STATUS: {
+      return {
+        ...state,
+        internationalSpaceStation: {
+          ...state.internationalSpaceStation,
+          isActive: action.payload.isActive,
         },
       };
     }

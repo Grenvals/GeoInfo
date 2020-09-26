@@ -15,8 +15,9 @@ import { RootStateType } from '../../../store/state/state';
 import './OptionListBar.scss';
 import { RadiobuttonsGroup } from '../Form/RadiobuttonsGroup/RadiobuttonsGroup';
 import { Scrollbars } from 'react-custom-scrollbars';
+import { SpaceControlPanel } from './SpaceControlPanel/SpaceControlPanel';
 
-const OptionListBar = React.memo(() => {
+const OptionListBar = () => {
   const dispatch = useDispatch();
   const markersCategories = useSelector((state: RootStateType) => getCategories(state));
   const mapBGLayers = useSelector((state: RootStateType) => getMapBGLayers(state));
@@ -54,10 +55,11 @@ const OptionListBar = React.memo(() => {
             checkboxesList={markersCategories}
             onChange={onChangeCategoryStatus}
           />
+          <SpaceControlPanel />
         </Scrollbars>
       </div>
     </div>
   );
-});
+};
 
 export { OptionListBar };

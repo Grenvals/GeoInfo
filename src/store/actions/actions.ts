@@ -9,6 +9,7 @@ import {
   SET_ISS_COORDINATES,
   GET_STARLINK_SATELITES,
   SET_SATELITES,
+  SET_ISS_STATUS,
 } from '../constants/constants';
 
 interface addMarkerType {
@@ -62,6 +63,13 @@ interface setSatelitesType {
   type: typeof SET_SATELITES;
   payload: {
     satelitesList: Array<SatelliteType>,
+  };
+}
+
+interface setISSStatusType {
+  type: typeof SET_ISS_STATUS;
+  payload: {
+    isActive: boolean,
   };
 }
 
@@ -120,6 +128,13 @@ export const setISSCoordinates = (height: number, latIng: LatIngType): setISSCoo
   },
 });
 
+export const setISSStatus = (isActive: boolean): setISSStatusType => ({
+  type: SET_ISS_STATUS,
+  payload: {
+    isActive,
+  },
+});
+
 export const setSatelites = (satelitesList: Array<SatelliteType>): setSatelitesType => ({
   type: SET_SATELITES,
   payload: {
@@ -142,4 +157,5 @@ export type MapActionTypes =
   | setCurrentMapBGLayerType
   | setMapLayerStatusType
   | setISSCoordinatesType
+  | setISSStatusType
   | setSatelitesType;

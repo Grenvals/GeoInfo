@@ -46,7 +46,7 @@ const MapPage = React.memo(() => {
   const internationalSpaceStation = useSelector((state: RootStateType) =>
     getInternationalSpaceStation(state)
   );
-  const satelitesList = useSelector((state: RootStateType) => getSatelites(state));
+  const satelites = useSelector((state: RootStateType) => getSatelites(state));
   const markers = useShallowEqualSelector(getMarkers);
   const initialMapZoom: number = 5;
 
@@ -70,6 +70,7 @@ const MapPage = React.memo(() => {
   }, [isMapActive]);
 
   useEffect(() => {
+    dispatch(getISSCoordinates());
     setInterval(() => {
       if (internationalSpaceStation.isActive) {
         dispatch(getISSCoordinates());
@@ -78,12 +79,12 @@ const MapPage = React.memo(() => {
   }, [internationalSpaceStation.isActive]);
 
   useEffect(() => {
+    dispatch(getStarlinkSatelites());
     setInterval(() => {
       if (internationalSpaceStation.isActive) {
         dispatch(getStarlinkSatelites());
       }
     }, 60000);
-    dispatch(getStarlinkSatelites());
   }, []);
 
   useEffect(() => {
@@ -102,7 +103,7 @@ const MapPage = React.memo(() => {
           mapLayers={mapLayers}
           onAddMarker={addMapMarker}
           internationalSpaceStation={internationalSpaceStation}
-          satelitesList={satelitesList}
+          satelites={satelites}
         />
       )}
     </div>

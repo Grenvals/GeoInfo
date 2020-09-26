@@ -156,9 +156,14 @@ export const initialState = {
     },
   ],
   internationalSpaceStation: {
-    name: 'International space station',
+    name: 'International space station (ISS)',
     trajectory: [],
+    LatIng: {
+      lat: 2,
+      lng: 2,
+    },
     isTrajectoryActive: true,
+    isVisibilityAreaActive: true,
     isActive: true,
   },
   satelites: {

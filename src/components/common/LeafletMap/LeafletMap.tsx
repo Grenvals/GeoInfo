@@ -39,7 +39,7 @@ interface LeafletMapPropsType {
   mapLayers: Array<MapLayerType>;
   onAddMarker(name: string, category: string, latlng: LatIngType): void;
   internationalSpaceStation: InternationalSpaceStationType;
-  satelitesList: SatellitesType;
+  satelites: SatellitesType;
 }
 
 const LeafletMap = React.memo(
@@ -50,7 +50,7 @@ const LeafletMap = React.memo(
     mapLayers,
     onAddMarker,
     internationalSpaceStation,
-    satelitesList,
+    satelites,
   }: LeafletMapPropsType) => {
     const { Overlay } = LayersControl;
 
@@ -120,7 +120,7 @@ const LeafletMap = React.memo(
       </Marker>
     ));
 
-    const satelites = satelitesList.satelitesList.map((s): any => (
+    const satelitesList = satelites.satelitesList.map((s): any => (
       <Marker
         position={s.latlng}
         icon={sateliteMarker}
@@ -128,18 +128,20 @@ const LeafletMap = React.memo(
         onMouseOver={(e: any) => {
           e.target.openPopup();
         }}>
-        <Circle center={s.latlng} radius={400000} fillOpacity={0.2} stroke={false}>
-          <MarkerPopup
-            name={s.name}
-            version={s.version}
-            launch={s.launch}
-            orbit={s.orbit}
-            velocity={s.velocity}
-            height={s.height}
-            latlng={s.latlng}
-            image={starlinkSateliteIcon}
-          />
-        </Circle>
+        {satelites.isCoverActive && (
+          <Circle center={s.latlng} radius={400000} fillOpacity={0.2} stroke={false}>
+            <MarkerPopup
+              name={s.name}
+              version={s.version}
+              launch={s.launch}
+              orbit={s.orbit}
+              velocity={s.velocity}
+              height={s.height}
+              latlng={s.latlng}
+              image={starlinkSateliteIcon}
+            />
+          </Circle>
+        )}
       </Marker>
     ));
 
@@ -167,7 +169,6 @@ const LeafletMap = React.memo(
                     imageSize={'contain'}
                   />
                 </Marker>
-                <Polyline positions={internationalSpaceStation.trajectory} color={'red'} />
                 {markersList}
               </LayerGroup>
             </Overlay>
@@ -176,8 +177,7 @@ const LeafletMap = React.memo(
             </Overlay>
             <Overlay name="Satelites" checked={true}>
               <LayerGroup>
-                {' '}
-                {internationalSpaceStation.latlng && internationalSpaceStation.height && (
+                {internationalSpaceStation.isActive && internationalSpaceStation.latlng && (
                   <Marker
                     position={internationalSpaceStation.latlng}
                     icon={internationalSpaceStationMarker}>
@@ -187,15 +187,20 @@ const LeafletMap = React.memo(
                       latlng={internationalSpaceStation.latlng}
                       image={ISSLocationIcon}
                     />
-                    <Circle
-                      center={internationalSpaceStation.latlng}
-                      radius={1400000}
-                      fillOpacity={0.2}
-                      stroke={true}
-                    />
+                    {internationalSpaceStation.isVisibilityAreaActive && (
+                      <Circle
+                        center={internationalSpaceStation.latlng}
+                        radius={1400000}
+                        fillOpacity={0.2}
+                        stroke={true}
+                      />
+                    )}
+                    {internationalSpaceStation.isTrajectoryActive && (
+                      <Polyline positions={internationalSpaceStation.trajectory} color={'red'} />
+                    )}
                   </Marker>
                 )}
-                {satelites.length > 0 && satelites}
+                {satelites.isActive && satelites.satelitesList.length > 0 && satelitesList}
               </LayerGroup>
             </Overlay>
           </LayersControl>
