@@ -2,9 +2,8 @@
 
 .spaceControlPanel {
   &__img {
-    padding: 10px 15px;
-    max-width: 75%;
     margin: 0 auto;
+    box-shadow: $shadow;
   }
 
   &__subtitle {

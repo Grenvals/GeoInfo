@@ -1,3 +1,4 @@
+import { SET_ISS_TRAJECTORY_STATUS } from './../constants/constants';
 import {
   ADD_MARKER,
   SET_CATEGORY_STATUS,
@@ -50,13 +51,17 @@ const mapReducer = (state = initialState, action: MapActionTypes): InitialStateT
       };
     }
     case SET_ISS_COORDINATES: {
+      const trajectory =
+        action.payload.latIng.lng < 179 // auto clear last path
+          ? [...state.internationalSpaceStation.trajectory, action.payload.latIng]
+          : [action.payload.latIng];
       return {
         ...state,
         internationalSpaceStation: {
           ...state.internationalSpaceStation,
           height: action.payload.height,
           latlng: action.payload.latIng,
-          trajectory: [...state.internationalSpaceStation.trajectory, action.payload.latIng],
+          trajectory: trajectory,
         },
       };
     }
@@ -66,6 +71,15 @@ const mapReducer = (state = initialState, action: MapActionTypes): InitialStateT
         internationalSpaceStation: {
           ...state.internationalSpaceStation,
           isActive: action.payload.isActive,
+        },
+      };
+    }
+    case SET_ISS_TRAJECTORY_STATUS: {
+      return {
+        ...state,
+        internationalSpaceStation: {
+          ...state.internationalSpaceStation,
+          isTrajectoryActive: action.payload.isActive,
         },
       };
     }
