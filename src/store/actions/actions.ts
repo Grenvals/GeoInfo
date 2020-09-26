@@ -11,6 +11,7 @@ import {
   SET_SATELITES,
   SET_ISS_STATUS,
   SET_ISS_TRAJECTORY_STATUS,
+  SET_ISS_VISIBILITY_AREA_STATUS,
 } from '../constants/constants';
 
 interface addMarkerType {
@@ -76,6 +77,13 @@ interface setISSStatusType {
 
 interface setISSTrajectoryStatusType {
   type: typeof SET_ISS_TRAJECTORY_STATUS;
+  payload: {
+    isActive: boolean,
+  };
+}
+
+interface setISSVisibilityAreaStatusType {
+  type: typeof SET_ISS_VISIBILITY_AREA_STATUS;
   payload: {
     isActive: boolean,
   };
@@ -150,6 +158,13 @@ export const setISSTrajectoryStatus = (isActive: boolean): setISSTrajectoryStatu
   },
 });
 
+export const setISSVisibilityAreaStatus = (isActive: boolean): setISSVisibilityAreaStatusType => ({
+  type: SET_ISS_VISIBILITY_AREA_STATUS,
+  payload: {
+    isActive,
+  },
+});
+
 export const setSatelites = (satelitesList: Array<SatelliteType>): setSatelitesType => ({
   type: SET_SATELITES,
   payload: {
@@ -174,4 +189,5 @@ export type MapActionTypes =
   | setISSCoordinatesType
   | setISSStatusType
   | setISSTrajectoryStatusType
+  | setISSVisibilityAreaStatusType
   | setSatelitesType;

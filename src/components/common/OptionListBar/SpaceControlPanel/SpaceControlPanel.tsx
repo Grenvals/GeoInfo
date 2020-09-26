@@ -2,7 +2,11 @@ import React, { useCallback } from 'react';
 
 import './SpaceControlPanel.scss';
 
-import { setISSStatus, setISSTrajectoryStatus } from '../../../../store/actions/actions';
+import {
+  setISSStatus,
+  setISSTrajectoryStatus,
+  setISSVisibilityAreaStatus,
+} from '../../../../store/actions/actions';
 import { getInternationalSpaceStation } from '../../../../store/selectors/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootStateType } from '../../../../store/state/state';
@@ -25,6 +29,12 @@ const SpaceControlPanel = () => {
     dispatch(setISSTrajectoryStatus(internationalSpaceStation.isTrajectoryActive ? false : true));
   }, [internationalSpaceStation.isTrajectoryActive]);
 
+  const onChangeISSVisibilityAreaStatus = useCallback((): void => {
+    dispatch(
+      setISSVisibilityAreaStatus(internationalSpaceStation.isVisibilityAreaActive ? false : true)
+    );
+  }, [internationalSpaceStation.isVisibilityAreaActive]);
+
   return (
     <div className="spaceControlPanel">
       <h3 className="spaceControlPanel__subtitle">SPACE</h3>
@@ -44,6 +54,12 @@ const SpaceControlPanel = () => {
             label={'ISS trajectory path'}
             checked={internationalSpaceStation.isTrajectoryActive}
             onChange={onChangeISSTrajectoryStatus}
+          />
+          <Checkbox
+            id={'03_ISS'}
+            label={'ISS visibility area from ground'}
+            checked={internationalSpaceStation.isVisibilityAreaActive}
+            onChange={onChangeISSVisibilityAreaStatus}
           />
         </li>
       </ul>
