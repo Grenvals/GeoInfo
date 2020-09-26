@@ -7,6 +7,11 @@
     position: absolute;
     z-index: -1;
     opacity: 0;
+    cursor: pointer;
+
+    input {
+      cursor: pointer;
+    }
 
     &+label {
       display: inline-flex;
@@ -14,6 +19,7 @@
       user-select: none;
       font-size: 14px;
       color: $textColor;
+      cursor: pointer;
 
       &::before {
         content: '';

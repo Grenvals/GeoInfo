@@ -14,6 +14,7 @@ import {
   SET_ISS_VISIBILITY_AREA_STATUS,
   SET_SATELITES_VISIBLE_STATUS,
   SET_SATELITES_COVERAGE_STATUS,
+  GET_SPACEX_LANDING_ZONES,
 } from '../constants/constants';
 
 interface addMarkerType {
@@ -113,6 +114,10 @@ type getStarlinkSatelitesType = {
   type: typeof GET_STARLINK_SATELITES,
 };
 
+type getSpacexLandingZonesType = {
+  type: typeof GET_SPACEX_LANDING_ZONES,
+};
+
 export const addMarker = (name: string, category: string, latlng: LatIngType): addMarkerType => ({
   type: ADD_MARKER,
   payload: {
@@ -208,6 +213,10 @@ export const getISSCoordinates = (): getISSCoordinatesType => ({
 
 export const getStarlinkSatelites = (): getStarlinkSatelitesType => ({
   type: GET_STARLINK_SATELITES,
+});
+
+export const getSpacexLandingZones = (): getSpacexLandingZonesType => ({
+  type: GET_SPACEX_LANDING_ZONES,
 });
 
 export type MapActionTypes =

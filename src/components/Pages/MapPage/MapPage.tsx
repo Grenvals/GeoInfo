@@ -7,6 +7,7 @@ import { LeafletMap } from '../../common/LeafletMap/LeafletMap';
 import {
   addMarker,
   getISSCoordinates,
+  getSpacexLandingZones,
   getStarlinkSatelites,
   setMapStatus,
 } from '../../../store/actions/actions';
@@ -48,7 +49,7 @@ const MapPage = React.memo(() => {
   );
   const satelites = useSelector((state: RootStateType) => getSatelites(state));
   const markers = useShallowEqualSelector(getMarkers);
-  const initialMapZoom: number = 5;
+  const initialMapZoom: number = 4;
 
   const [initialSettings, setStartPosition] = useState({
     ...currentUserLocation,
@@ -76,7 +77,7 @@ const MapPage = React.memo(() => {
         dispatch(getISSCoordinates());
       }
     }, 10000);
-  }, [internationalSpaceStation.isActive]);
+  }, []);
 
   useEffect(() => {
     dispatch(getStarlinkSatelites());
@@ -85,6 +86,10 @@ const MapPage = React.memo(() => {
         dispatch(getStarlinkSatelites());
       }
     }, 60000);
+  }, []);
+
+  useEffect(() => {
+    dispatch(getSpacexLandingZones());
   }, []);
 
   useEffect(() => {
