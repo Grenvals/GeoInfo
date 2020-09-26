@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
 import { Button } from '../../Button/Button';
-
-import './LoginForm.scss';
-import { required, maxLength, minLength } from '../../../../utils/validators';
 import { InputField } from '../InputField/InputField';
 
-interface LoginFormPropsType {
-  onSubmit(login: string, password: string): void;
-}
+import { required, maxLength, minLength } from '../../../../utils/validators';
+import { LoginFormPropsType } from './types';
+
+import './LoginForm.scss';
 
 const LoginForm = ({ onSubmit }: LoginFormPropsType) => {
   const [isValidationActive, setIsValidationActive] = useState<boolean>(false);

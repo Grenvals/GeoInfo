@@ -1,14 +1,8 @@
 import React from 'react';
 
-import './InputField.scss';
+import { InputFieldPropsType } from './types';
 
-interface InputFieldPropsType {
-  label: string;
-  type: string;
-  value: string;
-  placeholder: string;
-  onChange(e: React.ChangeEvent<HTMLInputElement>): void;
-}
+import './InputField.scss';
 
 const InputField = ({ label, type, value, placeholder, onChange }: InputFieldPropsType) => {
   return (

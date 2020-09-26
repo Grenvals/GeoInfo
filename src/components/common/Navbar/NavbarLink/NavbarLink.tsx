@@ -2,13 +2,9 @@ import React from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-import './NavbarLink.scss';
+import { NavbarLinkProps } from './types';
 
-type NavbarLinkProps = {
-  title: string,
-  link: string,
-  linkIcon: string,
-};
+import './NavbarLink.scss';
 
 const NavbarLink = ({ title, link, linkIcon }: NavbarLinkProps) => {
   return (

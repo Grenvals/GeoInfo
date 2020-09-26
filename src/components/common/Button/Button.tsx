@@ -1,16 +1,11 @@
 import React from 'react';
 import cn from 'classnames';
 
+import { ButtonPropsType } from './types';
+
 import './Button.scss';
 
-interface ButtonPropsType {
-  name?: string,
-  disabled?: boolean,
-  color?: string,
-  onClick?():void,
-}
-
-const Button = ({ name = 'Submit', onClick, disabled = false, color }: ButtonPropsType) => {
+const Button = ({ name = 'Submit', disabled = false, onClick, color }: ButtonPropsType) => {
   const handleClick = () => {
     onClick && onClick();
   };

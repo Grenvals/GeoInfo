@@ -1,14 +1,8 @@
 import React from 'react';
 
-import './Radio.scss';
+import { RadioPropsType } from './types';
 
-interface RadioPropsType {
-  name: string;
-  label: string;
-  id: string;
-  isChecked: boolean;
-  onChange(id: string): void;
-}
+import './Radio.scss';
 
 const Radio = ({ name, label, id, isChecked, onChange }: RadioPropsType) => {
   const handleChange = (): void => {

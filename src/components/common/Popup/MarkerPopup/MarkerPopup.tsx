@@ -3,21 +3,9 @@ import cn from 'classnames';
 
 import { Popup } from 'react-leaflet';
 
-import { LatIngType } from '../../../../types/types';
+import { MarkerPopupType } from './types';
 
 import './MarkerPopup.scss';
-
-type MarkerPopupType = {
-  name: string,
-  version?: string,
-  launch?: string,
-  orbit?: string,
-  velocity?: number,
-  height?: number,
-  latlng: LatIngType,
-  image: string,
-  imageSize?: string,
-};
 
 const MarkerPopup = ({
   name,

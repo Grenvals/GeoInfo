@@ -1,16 +1,10 @@
 import React, { useCallback } from 'react';
 
 import { Checkbox } from '../../Form/Checkbox/Checkbox';
-
 import { CategoryType } from '../../../../types/types';
+import { CheckboxesGroupType } from './types';
 
 import './CheckboxesGroup.scss';
-
-interface CheckboxesGroupType {
-  title: string;
-  checkboxesList: Array<CategoryType>;
-  onChange(id: string, isActive: boolean): void;
-}
 
 const CheckboxesGroup = ({ title, checkboxesList, onChange }: CheckboxesGroupType) => {
   const handleChange = useCallback((id: string, isActive: boolean) => {

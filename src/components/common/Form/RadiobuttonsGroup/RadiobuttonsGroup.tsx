@@ -1,16 +1,11 @@
 import React from 'react';
 
+import { Radio } from '../../Form/Radio/Radio';
+
+import { RadiobuttonsGroupType } from './types';
 import { MapLayerType } from '../../../../types/types';
 
 import './RadiobuttonsGroup.scss';
-
-import { Radio } from '../../Form/Radio/Radio';
-
-interface RadiobuttonsGroupType {
-  title: string;
-  radiobuttonsList: Array<MapLayerType>;
-  onChange(id: string): void;
-}
 
 const RadiobuttonsGroup = ({ title, radiobuttonsList, onChange }: RadiobuttonsGroupType) => {
   const handleChange = (id: string) => {

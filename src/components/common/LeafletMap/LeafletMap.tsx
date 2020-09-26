@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Map, TileLayer, Marker, LayersControl, LayerGroup, Polyline, Circle } from 'react-leaflet';
 
 import { Button } from '../Button/Button';
+import { MarkerPopup } from '../Popup/MarkerPopup/MarkerPopup';
 
 import {
   greenMarker,
@@ -15,32 +16,10 @@ import currentLocationIcon from '../../../assets/img/markers/home-marker.svg';
 import ISSLocationIcon from '../../../assets/img/popup/iss.png';
 import starlinkSateliteIcon from '../../../assets/img/popup/starlink.png';
 
+import { MarkerType } from '../../../types/types';
+import { LeafletMapPropsType } from './types';
+
 import './LeafletMap.scss';
-
-import {
-  MarkerType,
-  LatIngType,
-  MapLayerType,
-  InternationalSpaceStationType,
-  SatellitesType,
-} from '../../../types/types';
-import { MarkerPopup } from '../Popup/MarkerPopup/MarkerPopup';
-
-type InitialSettingsType = {
-  lat: number,
-  lng: number,
-  zoom: number,
-};
-
-interface LeafletMapPropsType {
-  initialSettings: InitialSettingsType;
-  markers: Array<MarkerType>;
-  mapBGLayer: MapLayerType;
-  mapLayers: Array<MapLayerType>;
-  onAddMarker(name: string, category: string, latlng: LatIngType): void;
-  internationalSpaceStation: InternationalSpaceStationType;
-  satelites: SatellitesType;
-}
 
 const LeafletMap = React.memo(
   ({

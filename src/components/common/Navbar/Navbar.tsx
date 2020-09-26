@@ -8,7 +8,7 @@ import authorIcon from '../../../assets/img/nav/user.svg';
 
 import './Navbar.scss';
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   return (
     <nav className="navbar">
       <ul className="navbar__list">

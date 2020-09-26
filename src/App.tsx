@@ -7,9 +7,9 @@ import { MapPage } from './components/Pages/MapPage/MapPage';
 import { AuthorPage } from './components/Pages/AuthorPage/AuthorPage';
 import { AuthorizationPage } from './components/Pages/AuthorizationPage/AuthorizationPage';
 
-import './App.scss';
 import './scss/global.scss';
 import './scss/main.scss';
+import './App.scss';
 
 const App: React.FC = () => {
   return (

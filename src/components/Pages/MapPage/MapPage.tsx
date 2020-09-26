@@ -21,16 +21,12 @@ import {
   getSatelites,
 } from '../../../store/selectors/selectors';
 import { useShallowEqualSelector } from '../../../hooks/useShallowEqualSelector';
-
-import './MapPage.scss';
-import { LatIngType } from '../../../types/types';
 import { RootStateType } from '../../../store/state/state';
 
-type GeolocationOptionsType = {
-  enableHighAccuracy: boolean,
-  timeout: number,
-  maximumAge: number,
-};
+import { LatIngType } from '../../../types/types';
+import { GeolocationOptionsType } from './types';
+
+import './MapPage.scss';
 
 const geolocationOptions: GeolocationOptionsType = {
   enableHighAccuracy: true,
@@ -38,8 +34,9 @@ const geolocationOptions: GeolocationOptionsType = {
   maximumAge: 1000 * 3600 * 24,
 };
 
-const MapPage = React.memo(() => {
+const MapPage: React.FC = React.memo(() => {
   const dispatch = useDispatch();
+
   const currentUserLocation = useSelector((state: RootStateType) => getCurrentUserLocation(state));
   const isMapActive = useSelector((state: RootStateType) => getIsMapActive(state));
   const mapBGLayer = useSelector((state: RootStateType) => getActiveMapBGLayer(state));

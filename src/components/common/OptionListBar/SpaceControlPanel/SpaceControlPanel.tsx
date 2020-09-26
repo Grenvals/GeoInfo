@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
-
-import './SpaceControlPanel.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootStateType } from '../../../../store/state/state';
+import { Checkbox } from '../../Form/Checkbox/Checkbox';
 
 import {
   setISSStatus,
@@ -14,22 +15,20 @@ import {
   getSatelites,
   getSatelitesCount,
 } from '../../../../store/selectors/selectors';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootStateType } from '../../../../store/state/state';
-import { Checkbox } from '../../Form/Checkbox/Checkbox';
 
 import ISSlogo from '../../../../assets/img/options/ISS_logo.png';
 import Starlinklogo from '../../../../assets/img/options/starlink-spacex.png';
 
-const SpaceControlPanel = () => {
-  const dispatch = useDispatch();
+import './SpaceControlPanel.scss';
 
-  const internationalSpaceStation = useSelector((state: RootStateType) =>
-    getInternationalSpaceStation(state)
-  );
+const SpaceControlPanel: React.FC = () => {
+  const dispatch = useDispatch();
 
   const satelites = useSelector((state: RootStateType) => getSatelites(state));
   const satelitesCount = useSelector((state: RootStateType) => getSatelitesCount(state));
+  const internationalSpaceStation = useSelector((state: RootStateType) =>
+    getInternationalSpaceStation(state)
+  );
 
   const onChangeISSStatus = useCallback((): void => {
     dispatch(setISSStatus(internationalSpaceStation.isActive ? false : true));
@@ -79,7 +78,6 @@ const SpaceControlPanel = () => {
           />
         </li>
       </ul>
-
       <h3 className="spaceControlPanel__subtitle">International space station</h3>
       <div className="spaceControlPanel__img">
         <img src={ISSlogo} alt="ISS" />
