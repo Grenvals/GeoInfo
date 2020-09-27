@@ -1,8 +1,8 @@
 {
   "routes": [
-		{ "source": "/main", "destination": "/index.html" }, 
-		{ "source": "/main/", "destination": "/index.html" }, 
-		{ "source": "/author/", "destination": "/index.html" },
-		{ "source": "/authorization/", "destination": "/index.html" }
+		{ "src": "/main", "dest": "/." },
+		{ "src": "/main/", "dest": "/." },
+		{ "src": "/author/", "dest": "/." },
+		{ "src": "/authorization/", "dest": "/." }
   ]
 }
