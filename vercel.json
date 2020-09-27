@@ -1,8 +1,8 @@
 {
   "routes": [
-		{ "src": "/main", "status": 308, "headers": { "Location": "https://geo-info.vercel.app" } },
-		{ "src": "/main/", "status": 308, "headers": { "Location": "https://geo-info.vercel.app" } },
-		{ "src": "/author/", "status": 308, "headers": { "Location": "https://geo-info.vercel.app" } },
-		{ "src": "/authorization/", "status": 308, "headers": { "Location": "https://geo-info.vercel.app" } }
+		{ "source": "/main", "destination": "/" }, 
+		{ "source": "/main/", "destination": "/" }, 
+		{ "source": "/author/", "destination": "/" },
+		{ "source": "/authorization/", "destination": "/" }
   ]
 }
