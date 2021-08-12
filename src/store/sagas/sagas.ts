@@ -7,7 +7,7 @@ import {
   GET_STARLINK_SATELITES,
 } from '../constants/constants';
 
-function* loadISScoordinates() {
+function* loadISScoordinates(): Generator<any, void, any> {
   try {
     const ISScoordinates = yield call(nasaAPI.getISScoordinates);
     const LatIng = {
@@ -20,7 +20,7 @@ function* loadISScoordinates() {
   }
 }
 
-function* loadSpacexLandingZones() {
+function* loadSpacexLandingZones(): Generator<any, void, any> {
   try {
     const spacexLandingZones = yield call(spacexAPI.getLandingZones);
     for (let key in spacexLandingZones) {
@@ -35,7 +35,7 @@ function* loadSpacexLandingZones() {
   }
 }
 
-function* loadStarlinkSatelites() {
+function* loadStarlinkSatelites(): Generator<any, void, any> {
   try {
     const starlinkSatelites = yield call(spacexAPI.getStarlinkSatelites);
     const satelitesList = starlinkSatelites.map((s: any, i: number): any => {
