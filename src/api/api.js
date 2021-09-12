@@ -1,4 +1,4 @@
-const nasaAPIKey = 'ZWZGPL-V74C37-LGKJZW-4K2T';
+const nasaAPIKey = '';
 
 const spacexAPIBaseURL = 'https://api.spacexdata.com/v4';
 const nasaAPIBaseURL = 'https://www.n2yo.com/rest/v1';

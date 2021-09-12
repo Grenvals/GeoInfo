@@ -50,12 +50,12 @@ const OptionListBar: React.FC = () => {
             checkboxesList={mapLayers}
             onChange={onChangeMapLayerStatus}
           />
+          <SpaceControlPanel />
           <CheckboxesGroup
             title="Markers"
             checkboxesList={markersCategories}
             onChange={onChangeCategoryStatus}
           />
-          <SpaceControlPanel />
         </Scrollbars>
       </div>
     </div>

@@ -92,7 +92,6 @@ export const initialState = {
   },
   categories: [
     { id: '1', name: 'spacex landing zones', isActive: false },
-    { id: '2', name: 'mountains in ukraine', isActive: false },
     { id: '7', name: 'another', isActive: true },
   ],
   isMapActive: false,
@@ -100,8 +99,7 @@ export const initialState = {
     {
       id: '01',
       name: 'Satellite',
-      url:
-        'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+      url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
       isActive: false,
     },
     {
@@ -119,36 +117,31 @@ export const initialState = {
     {
       id: '04',
       name: 'Transport',
-      url:
-        'https://tile.thunderforest.com/transport-dark/{z}/{x}/{y}.png?apikey=d84cfed64b4c44e387554542ce28042a',
+      url: 'https://tile.thunderforest.com/transport-dark/{z}/{x}/{y}.png?apikey=d84cfed64b4c44e387554542ce28042a',
       isActive: false,
     },
     {
       id: '05',
       name: 'Mountain hiking 3d',
-      url:
-        'https://tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=d84cfed64b4c44e387554542ce28042a',
+      url: 'https://tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=d84cfed64b4c44e387554542ce28042a',
       isActive: false,
     },
     {
       id: '06',
       name: 'Railways',
-      url:
-        'https://tile.thunderforest.com/pioneer/{z}/{x}/{y}.png?apikey=d84cfed64b4c44e387554542ce28042a',
+      url: 'https://tile.thunderforest.com/pioneer/{z}/{x}/{y}.png?apikey=d84cfed64b4c44e387554542ce28042a',
       isActive: false,
     },
     {
       id: '07',
       name: 'ArcGIS Streets',
-      url:
-        'http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
+      url: 'http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
       isActive: false,
     },
     {
       id: '08',
       name: 'NASA Night Lights Satellite',
-      url:
-        'http://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default//GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpg',
+      url: 'http://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default//GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpg',
       isActive: true,
     },
     {
@@ -162,22 +155,19 @@ export const initialState = {
     {
       id: '01',
       name: 'air polution realtime',
-      url:
-        'https://tiles.waqi.info/tiles/usepa-pm25/{z}/{x}/{y}.png?token=2bfd892052160b7462ce84641a8cc819547c7f49',
+      url: 'https://tiles.waqi.info/tiles/usepa-pm25/{z}/{x}/{y}.png?token=2bfd892052160b7462ce84641a8cc819547c7f49',
       isActive: false,
     },
     {
       id: '02',
       name: 'rain layer',
-      url:
-        'https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=d7c6eaa896714bc9e2fd14eee64307eb',
+      url: 'https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=d7c6eaa896714bc9e2fd14eee64307eb',
       isActive: false,
     },
     {
       id: '03',
       name: 'air pressure layer',
-      url:
-        'https://tile.openweathermap.org/map/pressure_new/{z}/{x}/{y}.png?appid=d7c6eaa896714bc9e2fd14eee64307eb',
+      url: 'https://tile.openweathermap.org/map/pressure_new/{z}/{x}/{y}.png?appid=d7c6eaa896714bc9e2fd14eee64307eb',
       isActive: false,
     },
   ],
