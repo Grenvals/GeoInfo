@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Map, TileLayer, Marker, LayersControl, LayerGroup, Polyline, Circle } from 'react-leaflet';
 
 import { Button } from '../Button/Button';
@@ -16,7 +16,7 @@ import currentLocationIcon from '../../../assets/img/markers/home-marker.svg';
 import ISSLocationIcon from '../../../assets/img/popup/iss.png';
 import starlinkSateliteIcon from '../../../assets/img/popup/starlink.png';
 
-import { MarkerType } from '../../../types/types';
+import { MarkerType, SatelliteType } from '../../../types/types';
 import { LeafletMapPropsType } from './types';
 
 import './LeafletMap.scss';
@@ -36,6 +36,7 @@ const LeafletMap = React.memo(
     const mapRef = useRef<Map>(null);
     const center = { lat: initialSettings.lat, lng: initialSettings.lng };
     const [unsaveMarkers, setUnsaveMarkers] = useState<Array<MarkerType>>([]);
+    const satelitesOnMap = 1000;
 
     useEffect(() => {
       setInterval(() => {
@@ -44,6 +45,31 @@ const LeafletMap = React.memo(
         }
       }, 1000);
     }, [mapRef]);
+
+    const [visibleSatellites, setVisibleSatellites] = useState<SatelliteType[]>([]);
+
+    useEffect(() => {
+      const map = mapRef.current?.leafletElement;
+      if (!map || !satelites.isActive) return;
+
+      const updateVisibleSatellites = () => {
+        const bounds = map.getBounds();
+        const filtered = satelites.satelitesList
+          .filter((s) => bounds.contains(s.latlng))
+          .slice(0, satelitesOnMap);
+
+        setVisibleSatellites(filtered);
+      };
+
+      updateVisibleSatellites(); // початкова ініціалізація
+      map.on('moveend', updateVisibleSatellites);
+      map.on('zoomend', updateVisibleSatellites);
+
+      return () => {
+        map.off('moveend', updateVisibleSatellites);
+        map.off('zoomend', updateVisibleSatellites);
+      };
+    }, [satelites.satelitesList, satelites.isActive]);
 
     const addLocalMarker = (e: any) => {
       const newId = `localMarker${unsaveMarkers.length + 1}_${(+new Date()).toString(16)}`;
@@ -99,30 +125,32 @@ const LeafletMap = React.memo(
       </Marker>
     ));
 
-    const satelitesList = satelites.satelitesList.map((s): any => (
-      <Marker
-        position={s.latlng}
-        icon={sateliteMarker}
-        key={s.id}
-        onMouseOver={(e: any) => {
-          e.target.openPopup();
-        }}>
-        {satelites.isCoverageActive && (
-          <Circle center={s.latlng} radius={400000} fillOpacity={0.2} stroke={false}>
-            <MarkerPopup
-              name={s.name}
-              version={s.version}
-              launch={s.launch}
-              orbit={s.orbit}
-              velocity={s.velocity}
-              height={s.height}
-              latlng={s.latlng}
-              image={starlinkSateliteIcon}
-            />
-          </Circle>
-        )}
-      </Marker>
-    ));
+    const filteredSatelitesList = useMemo(
+      () =>
+        visibleSatellites.map((s) => (
+          <Marker
+            position={s.latlng}
+            icon={sateliteMarker}
+            key={s.id}
+            onMouseOver={(e: any) => e.target.openPopup()}>
+            {satelites.isCoverageActive && (
+              <Circle center={s.latlng} radius={400000} fillOpacity={0.2} stroke={false}>
+                <MarkerPopup
+                  name={s.name}
+                  version={s.version}
+                  launch={s.launch}
+                  orbit={s.orbit}
+                  velocity={s.velocity}
+                  height={s.height}
+                  latlng={s.latlng}
+                  image={starlinkSateliteIcon}
+                />
+              </Circle>
+            )}
+          </Marker>
+        )),
+      [visibleSatellites, satelites.isCoverageActive]
+    );
 
     return (
       <div className="map">
@@ -154,7 +182,7 @@ const LeafletMap = React.memo(
             <Overlay name="Unsave markers" checked={true}>
               <LayerGroup>{unsaveMarkersList}</LayerGroup>
             </Overlay>
-            <Overlay name="Satelites" checked={true}>
+            <Overlay name="Satelites" checked>
               <LayerGroup>
                 {internationalSpaceStation.isActive && internationalSpaceStation.latlng && (
                   <Marker
@@ -179,7 +207,7 @@ const LeafletMap = React.memo(
                     )}
                   </Marker>
                 )}
-                {satelites.isActive && satelites.satelitesList.length > 0 && satelitesList}
+                {satelites.isActive && filteredSatelitesList}
               </LayerGroup>
             </Overlay>
           </LayersControl>

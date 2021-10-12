@@ -97,7 +97,7 @@ const MapPage: React.FC = React.memo(() => {
 
   return (
     <div className="mapPage">
-      {initialSettings && mapBGLayer && (
+      {initialSettings && mapBGLayer && satelites.satelitesList.length > 0 && (
         <LeafletMap
           initialSettings={initialSettings}
           markers={markers}
