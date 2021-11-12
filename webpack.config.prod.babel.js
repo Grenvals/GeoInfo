@@ -100,7 +100,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new ForkTsCheckerWebpackPlugin(),
+    // new ForkTsCheckerWebpackPlugin(),
     new webpack.SourceMapDevToolPlugin({
       filename: '[name].js.map',
       exclude: ['bundle.js'],
