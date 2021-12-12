@@ -1,41 +1,41 @@
-# [GeoInfo](https://ukrainedn.herokuapp.com/)
+# [GeoInfo](https://geo-info.vercel.app/)
 
-Geographic information system(GIS) where you can combine and monitor different geodata.
+Information System (GIS) where you can combine and monitor various types of geodata.
 
 ![review](https://user-images.githubusercontent.com/40334272/94373473-81930d00-010e-11eb-87b2-08c9d24173cc.png)
 
 ## [Review](https://www.youtube.com/watch?v=_H1fAfAuQLM)
 [![Review](https://user-images.githubusercontent.com/40334272/94373616-39c0b580-010f-11eb-9b60-ce61c8a5ff1c.png)](https://www.youtube.com/watch?v=_H1fAfAuQLM)
 
-Geographic information system(GIS) where you can combine and monitor different geodata. Display geodata from SpaceX and NASA, the position of satellites(Starlink), ISS. Topographic maps, air pollution, atmospheric parameters, and more.
+Geographic Information System (GIS) where you can combine and monitor various types of geodata. It displays satellite positions, topographic maps, air pollution levels, atmospheric indicators, and more.
 
 ## 🌎 [Demo online](https://geo-info.vercel.app/) (vercel)
 
-   В репозиторії залишені демо ключі API(src/api/api.js) з обмеженнями, тут ви можете [згенерувати власні](https://www.spacex.com/). Додаток онлайн - [GeoInfo](https://geo-info.vercel.app/).
+   Demo API keys with limitations are included in the repository (src/api/api.js). You can generate your own keys [here](https://www.spacex.com/). Open the live application - [GeoInfo](https://geo-info.vercel.app/).
 
-## 📂 Folder structure 
+## 📂 Folder structure
 
  ```
    ├── dist                      /* generate build in production mode
    └── public                    /* static files
    |     ├── index.html          /* change title and static html here
    |     └── favicon
-   └── src 
+   └── src
    |     └── assets              /* images, fonts, additional files
-   |      ...   
-   |     ├── components          /* react components  
-   |          └── common         /* reusable react components       
-   |     ├── hooks               /* custom react hooks        
-   |     └── store               /* store  
+   |      ...
+   |     ├── components          /* react components
+   |          └── common         /* reusable react components
+   |     ├── hooks               /* custom react hooks
+   |     └── store               /* store
    |          ├── api            /* api
    |          ├── sagas          /* redux-saga generators
-   |          ├── actions        /* actions 
-   |          ├── constants      /* constants 
+   |          ├── actions        /* actions
+   |          ├── constants      /* constants
    |          ├── reducers       /* reducers
    |          ├── selectors      /* selectors
    |          ├── state          /* initial state
    |          ├── types          /* typescript types
-   |          └── store.js       /* create store         
+   |          └── store.js       /* create store
    |     ├── scss                /* general style, reset & normalaize
    |     ├── utils               /* utils, handlers
    |     ├── App.js              /* general component, router
@@ -48,70 +48,66 @@ Geographic information system(GIS) where you can combine and monitor different g
    ├── webpack.config.dev.babel  /* webpack config for development
    ├── webpack.config.prod.babel /* webpack config for production
    └── .gitignore                /* ignore folders & files
-    
+
 ```
 ## 💻 Technology stack
-- ### ARCHITECTURE 
+- ### ARCHITECTURE
    - UI(React), BLL(Redux), DAL(Redux-Saga).
-- ### Shell  
-   - Збірка на основі webpack + babel, з можливістю поступової інтеграції TypeScript.
-- ### LAYOUT  
-   - Для стилізації використовував sass. Для кастомізації скролбара використовував react-perfect-scrollbar. Для зручного комбінування класів підключив бібліотеку classnames.
-- ### STORE 
-   - Для зберігання глобального стану додатка використовував традиційно redux, react-redux, щоб зручно використовувати redux всередині react. Спробував заюзати замість connect хуки. З однієї сторони це знімає необхідність обгортати компонент в HOC(connect hell), але є свої мінуси. Перший - ми використовуємо dispatch напряму. Також ми навантажуючи компонент сторонніми діями, ламаємо парадигму чистих функцій SOLID. Також useSelector на відміну від оптимізацій connect, не зупиняє ререндер компонента, навіть якщо props не змінились, що змушує використовувати React.memo. При передачі callback з dispatch дочірнім компонентам потрібно обгортати в useCallback, щоб компоненти не ренедерились без необхідності.
-- ### ROUTE  
-   - Для реалізації роутинга використав бібліотеку react-router-dom
-- ### API  
-   - Для того щоб мати можливість створювати асинхронні action, сайд ефекти, підключив redux-saga. Використав доступ до SpaceX API v4, NASA API(ISS).
-- ### MAPS 
-   - Для роботи з картами використав бібліотеку Leaflet.
+- ### Build system
+   - Custom build system based on webpack + Babel, with the ability for gradual TypeScript integration.
+- ### LAYOUT
+   - For styling, I used sass. To customize the scrollbar, I used react-perfect-scrollbar. For convenient class name combination, I integrated the classnames.
+- ### STORE
+   - For storing the global state of the application, I traditionally used redux with react-redux. I tried using hooks instead of the connect function. On one hand, this eliminates the need to wrap components in HOC (connect hell), but there are some drawbacks. The first is that we directly use dispatch. Additionally, by loading components with external actions, we break the clean functions paradigm of SOLID. Also, unlike the optimizations with connect, useSelector doesn't prevent component re-renders even if the props haven't changed, which forces us to use React.memo. When passing a callback with dispatch to child components, it needs to be wrapped in useCallback to prevent unnecessary re-renders.
+- ### ROUTING
+   - For routing implementation, I used the react-router-dom library.
+- ### API
+   - To be able to create asynchronous actions and handle side effects, I integrated redux-saga. I used the SpaceX API v4 and NASA API (ISS).
+- ### MAPS
+   - For working with maps, I used the Leaflet library Leaflet.
 
  ## 💻 FUNCTIONAL
- - ### **SPACE** 
-   - *Відображення масиву супутників Starlink(оновлення кожних 10хв), площі покриття зв'язком, кількість виведених на орбіту, детальну інформацію про кожний супутник.*
-   - *Відображення МКС в режимі реального часу, пройденої траекторії, зони видимості з землі.*
- - ### **MAPS** 
-   - *Супутникові знімки*
-   - *Карта генштабу*
-   - *Велодороги*
-   - *Транспорт*
-   - *Карта туристичних маршрутів*
-   - *Карта туристичних маршрутів*
-   - *Карта залізниць*
-   - *Карта нічних знімків NASA*
- - ### **LAYERS** 
-   - *Супутникові знімки*
- - ### **MAPS** 
-   - *Забруднення повітря в реальному часі*
-   - *Осадки*
-   - *Повітряний тиск*
- - ### **МАRKERS** 
-   - *Додавання маркерів*
-   - *Зберігання масиву маркерів*
-   - *Фільтрація маркерів за категоріями*
+ - ### **SPACE**
+   - *Display of the Starlink satellite array (updated every 10 minutes), coverage areas, the number of satellites launched into orbit, and detailed information about each satellite.*
+   - *Real-time tracking of the ISS, its past trajectory, and visibility zones from Earth.*
+ - ### **MAPS**
+   - *Satellite imagery*
+   - *General Staff map*
+   - *Bicycle routes*
+   - *Transport routes*
+   - *Tourist route map*
+   - *Railway map*
+   - *NASA Nighttime Imagery Map*
+ - ### **LAYERS**
+   - *Real-time air pollution*
+   - *Rainfall*
+   - *Air pressure*
+ - ### **МАRKERS**
+   - *Adding markers*
+   - *Storing an array of markers*
 
 ## 🚀 Getting Started (development)
-###[Demo online ](http://test.grenvalz.kl.com.ua/main)
+### [Demo online ](https://geo-info.vercel.app/)
 
-You can run aplication on your local dev environment in 5 minutes with these steps:
-1. **Install Node.js** [download](https://nodejs.org/en/). 
-2. **Install Yarn** [download](https://classic.yarnpkg.com/en/docs/install#windows-stable). 
-3. **Clone repository** . 
+You can run the application on your local development environment in 5 minutes by following these steps:
+1. **Install Node.js** [download](https://nodejs.org/en/).
+2. **Install Yarn** [download](https://classic.yarnpkg.com/en/docs/install#windows-stable).
+3. **Clone repository** .
 4. **Install dependencies** .
 
    Open CLI in aplication folder and set up in a single command:
-  
+
    ```shell
    yarn install
-   
+
    ```
 5. **Start aplication in development mode** .
 
    Set up in a single command in CLI:
-  
+
    ```shell
    yarn start
-   
+
    ```
 ![Screenshot_1](https://user-images.githubusercontent.com/40334272/92362988-780f1a00-f0f9-11ea-879f-77af2b98dd37.png)
 
