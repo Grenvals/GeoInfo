@@ -4,14 +4,19 @@ Information System (GIS) where you can combine and monitor various types of geod
 
 ![review](https://user-images.githubusercontent.com/40334272/94373473-81930d00-010e-11eb-87b2-08c9d24173cc.png)
 
+[![Review](https://github.com/user-attachments/assets/dbdbc656-e84c-48d7-b431-9f07945e722d)](https://geo-info.vercel.app/)
+[![Review](https://github.com/user-attachments/assets/08222949-cb5a-40ac-adf8-66feb463b641)](https://www.youtube.com/watch?v=_H1fAfAuQLM)
+
 ## [Review](https://www.youtube.com/watch?v=_H1fAfAuQLM)
 [![Review](https://user-images.githubusercontent.com/40334272/94373616-39c0b580-010f-11eb-9b60-ce61c8a5ff1c.png)](https://www.youtube.com/watch?v=_H1fAfAuQLM)
 
 Geographic Information System (GIS) where you can combine and monitor various types of geodata. It displays satellite positions, topographic maps, air pollution levels, atmospheric indicators, and more.
 
-## 🌎 [Demo online](https://geo-info.vercel.app/) (vercel)
+[![Review](https://github.com/user-attachments/assets/dbdbc656-e84c-48d7-b431-9f07945e722d)](https://geo-info.vercel.app/)
 
-   Demo API keys with limitations are included in the repository (src/api/api.js). You can generate your own keys [here](https://www.spacex.com/). Open the live application - [GeoInfo](https://geo-info.vercel.app/).
+## 🌎 [API](https://geo-info.vercel.app/) & Deployment (vercel)
+
+Demo API keys with limitations are included in the repository (src/api/api.js). You can generate your own keys [here](https://www.spacex.com/). Open the live application(Vercel) - [GeoInfo](https://geo-info.vercel.app/).
 
 ## 📂 Folder structure
 
@@ -87,7 +92,6 @@ Geographic Information System (GIS) where you can combine and monitor various ty
    - *Storing an array of markers*
 
 ## 🚀 Getting Started (development)
-### [Demo online ](https://geo-info.vercel.app/)
 
 You can run the application on your local development environment in 5 minutes by following these steps:
 1. **Install Node.js** [download](https://nodejs.org/en/).
@@ -110,6 +114,8 @@ You can run the application on your local development environment in 5 minutes b
 
    ```
 ![Screenshot_1](https://user-images.githubusercontent.com/40334272/92362988-780f1a00-f0f9-11ea-879f-77af2b98dd37.png)
+
+[![Review](https://github.com/user-attachments/assets/dbdbc656-e84c-48d7-b431-9f07945e722d)](https://geo-info.vercel.app/)
 
  ## 📷 Screenshots
 ![s1](https://user-images.githubusercontent.com/40334272/94373474-822ba380-010e-11eb-8905-2486f99d01b9.png)
